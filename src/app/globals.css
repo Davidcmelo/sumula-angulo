@@ -16,12 +16,25 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+/* primeira tabela*/
+
+.tabela-um th,
+.tabela-um td {
+  border: 1px solid black;
+  
+  
 }
+
+.tabela-dois th, td{
+  border:1px solid black;
+}
+
+.tabela-tres th,
+.tabela-tres tr, 
+.tabela-tres td{
+  border:1px solid black
+}
+
+
+
