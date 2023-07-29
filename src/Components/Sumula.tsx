@@ -178,7 +178,7 @@ export default function Home() {
           margin: 0.5,
           filename: 'sumula_angulo.pdf',
           image: { type: 'png', quality: 1 },
-          html2canvas: { scale: 3 },
+          html2canvas: { scale: 1 },
           jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
         };
       
@@ -189,12 +189,12 @@ import('html2pdf.js').then((html2pdf) => {
 
     html2pdf.default(element,opt).from(element).set(opt).save();
 
-    // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
-    //   // print the base64 string, call save instead of outputPdf if you just want to save it.    
-    // });
+    
   });
 
-
+// html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
+    //   // print the base64 string, call save instead of outputPdf if you just want to save it.    
+    // });
 
 
         // // Verifica se o código está sendo executado no lado do cliente antes de importar a biblioteca
