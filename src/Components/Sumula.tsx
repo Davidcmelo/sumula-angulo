@@ -14,6 +14,7 @@ import ReactDOM from "react-dom";
 // import html2pdf from 'html2pdf.js'
 // import '../htmlpdf.d.ts'
 import html2pdf from 'html2pdf.js';
+import { generatePDF } from './pdfUtils';
 
 export default function Home() {
   
@@ -172,23 +173,27 @@ export default function Home() {
     }
     // const ref = useRef<HTMLDivElement>(null);
 
-    const handleDownloadPDF = () => {
-        const element = document.getElementById('pdf-content');
+    // const handleDownloadPDF = () => {
+    //     const element = document.getElementById('pdf-content');
        
-        const opt = {
-            margin: 0.5,
-            filename: 'sumula_angulo.pdf',
-            image: { type: 'png', quality: 1 },
-            html2canvas: { scale: 3},
-            jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
-        };
-        // html2pdf(element, opt).from(element).set(opt).save();
-        if (element) {
-            html2pdf(element, opt).from(element).set(opt).save();
-        } else {
-            console.error('Element with id "pdf-content" not found.');
-        }
-    };
+    //     const opt = {
+    //         margin: 0.5,
+    //         filename: 'sumula_angulo.pdf',
+    //         image: { type: 'png', quality: 1 },
+    //         html2canvas: { scale: 3},
+    //         jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
+    //     };
+    //     // html2pdf(element, opt).from(element).set(opt).save();
+    //     if (element) {
+    //         html2pdf(element, opt).from(element).set(opt).save();
+    //     } else {
+    //         console.error('Element with id "pdf-content" not found.');
+    //     }
+    // };
+
+    const handleDownloadPDF = () => {
+        generatePDF();
+      };
 
     return (
         <div>        
@@ -202,13 +207,12 @@ export default function Home() {
                 </div>
                 <header className='flex justify-center '>
                     <div className=' flex items-center'>
-                        {/* <Image
+                        <Image
                             src='/imagens/vasco.png'
                             alt='vasco'
                             width={50}
                             height={50}
-                        /> */}
-                        <p>img time 1</p>
+                        />                        
                         {/* <input type="text" className='border border-black text-center  ' value={equipes.time1.nome}   /> */}
                         <div className='border border-black  pb-3 text-xs  w-44 '>
                             <h4 className=' uppercase pr-10  pl-2 font-bold'>{equipes.time1.nome}</h4>
@@ -226,13 +230,12 @@ export default function Home() {
                         <div className='border border-black pb-3  text-xs w-44 '> 
                             <h4 className=' pl-10 pr-2 uppercase font-bold'>{equipes.time2.nome}</h4>
                         </div>
-                        {/* <Image
+                        <Image
                             src='/imagens/flamengo.png'
                             alt='flamengo'
                             width={50}
                             height={50}
-                        /> */}
-                        <p>img time 2</p>
+                        />
                     </div>
                 </header>
                 <TableUm/>
