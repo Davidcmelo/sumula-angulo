@@ -172,7 +172,7 @@ export default function Home() {
     }
     const ref = useRef<HTMLDivElement>(null);
 
-    const handleDownloadPDF = () => {
+    const handleDownloadPDF = (html2pdf:any) => {
         const element = document.getElementById('pdf-content');
        
         const opt = {
