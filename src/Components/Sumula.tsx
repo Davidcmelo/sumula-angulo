@@ -1,14 +1,15 @@
 'use client'
 import Image from 'next/image'
 import '../app/globals.css'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import Time_um from './Time_um';
 import Gols from './Gols';
 import TableUm from './TableUm';
 import TableDois from './TableDois';
 import Time_dois from './Time_dois';
 
-import { generatePDF } from './pdfUtils';
+
+
 
 export default function Home() {
   
@@ -165,37 +166,35 @@ export default function Home() {
             ]
         }
     }
-    // const ref = useRef<HTMLDivElement>(null);
-
-    // const handleDownloadPDF = () => {
-    //     const element = document.getElementById('pdf-content');
-       
-    //     const opt = {
-    //         margin: 0.5,
-    //         filename: 'sumula_angulo.pdf',
-    //         image: { type: 'png', quality: 1 },
-    //         html2canvas: { scale: 3},
-    //         jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
-    //     };
-    //     // html2pdf(element, opt).from(element).set(opt).save();
-    //     if (element) {
-    //         html2pdf(element, opt).from(element).set(opt).save();
-    //     } else {
-    //         console.error('Element with id "pdf-content" not found.');
-    //     }
-    // };
-
-    useEffect(() => {
-        // Verifica se o código está sendo executado no lado do cliente antes de chamar a função generatePDF
+    const ref = useRef<HTMLDivElement>(null);
+    
+    const handleDownloadPDF = () => {
+        const element = document.getElementById('pdf-content');
+        if (!element) {
+            console.error('Element with id "pdf-content" not found.');
+            return;
+          }
+        const opt = {
+          margin: 0.5,
+          filename: 'sumula_angulo.pdf',
+          image: { type: 'png', quality: 1 },
+          html2canvas: { scale: 3 },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+        };
+      
+        // Verifica se o código está sendo executado no lado do cliente antes de importar a biblioteca
         if (typeof window !== 'undefined') {
-          // Executa a função generatePDF somente no lado do cliente
-          generatePDF();
+          // @ts-ignore
+          import('html2pdf.js').then((html2pdf) => {
+            html2pdf.default(element,opt).from(element).set(opt).save();
+          });
+        } else {
+          console.error('HTML2PDF.js can only be used in the browser environment.');
         }
-      }, []);
-
+      };
     return (
         <div>        
-            <main className=' flex flex-col ' id='pdf-content' >            
+            <main className=' flex flex-col ' id='pdf-content' ref={ref}>            
                 <div className='flex justify-center' >
                     <h1 className="text-xl font-semibold">COPA ANGULO DE FUTSAL</h1>
                 </div>
@@ -240,29 +239,8 @@ export default function Home() {
                 <Gols/>
             </main>
             <div className='m-2'>
-                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={generatePDF}> GERAR PDF</button>
+                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
             </div>
         </div>
     )
 }
-
-// ref={contentRef}
-
-// const contentRef = useRef(null);
-// const handleExportToPDF = () => {
-//     const content = contentRef.current;
-//     const opt = {
-//       margin: 0.5,
-//       filename: 'sumula_angulo.pdf',
-//       image: { type: 'png', quality: 1 },
-//       html2canvas: { scale: 2 },
-//       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-//     };
-  
-//     html2pdf().from(content).set(opt).save();
-//   };
-
- 
-
-
-// onClick={handleExportToPDF} 
