@@ -8,12 +8,6 @@ import TableUm from './TableUm';
 import TableDois from './TableDois';
 import Time_dois from './Time_dois';
 
-import ReactDOM from "react-dom";
-// import Pdf from "react-to-pdf";
-// import html2canvas from 'html2canvas';
-// import html2pdf from 'html2pdf.js'
-// import '../htmlpdf.d.ts'
-import html2pdf from 'html2pdf.js';
 import { generatePDF } from './pdfUtils';
 
 export default function Home() {
@@ -197,11 +191,7 @@ export default function Home() {
 
     return (
         <div>        
-            <main className=' flex flex-col ' id='pdf-content' >
-            {/* <Pdf targetRef={ref} filename="code-example.pdf" options={options}>
-                {({ toPdf }:any) => <button onClick={toPdf}>Generate Pdf</button>}
-            </Pdf> */}
-            
+            <main className=' flex flex-col ' id='pdf-content' >            
                 <div className='flex justify-center' >
                     <h1 className="text-xl font-semibold">COPA ANGULO DE FUTSAL</h1>
                 </div>
