@@ -7,7 +7,7 @@ export default function TableDois(){
                 <tbody >
                     <tr >
                         <td>ÁRBITRO PRINCIPAL:</td>
-                        <td>ASSINATURA</td>
+                        <td>ASSINATURA:</td>
                     </tr>
                     <tr>
                         <td>ÁRBITRO AUXILIAR:</td>

@@ -7,7 +7,7 @@ import Gols from './Gols';
 import TableUm from './TableUm';
 import TableDois from './TableDois';
 import Time_dois from './Time_dois';
-import puppeteer from 'puppeteer';
+
 import ReactDOM from "react-dom";
 // import Pdf from "react-to-pdf";
 // import html2canvas from 'html2canvas';
@@ -182,7 +182,6 @@ export default function Home() {
             html2canvas: { scale: 3},
             jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
         };
-  
         // html2pdf(element, opt).from(element).set(opt).save();
         if (element) {
             html2pdf(element, opt).from(element).set(opt).save();

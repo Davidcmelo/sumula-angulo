@@ -17,7 +17,7 @@ export default function TableUm(){
                 </thead>
                 <tbody  >
                     <tr >
-                        <td rowSpan={4}>____/ ____/ ____</td>
+                        <td rowSpan={4} className="text-lg w-1/6">___/___/___</td>
                         <td>1º PERÍODO:</td>
                         <td ></td>
                         <td></td>
