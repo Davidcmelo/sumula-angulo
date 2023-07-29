@@ -178,7 +178,7 @@ export default function Home() {
           margin: 0.5,
           filename: 'sumula_angulo.pdf',
           image: { type: 'png', quality: 1 },
-          html2canvas: { scale: 1 },
+          html2canvas: { scale: 3 },
           jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
         };
       
