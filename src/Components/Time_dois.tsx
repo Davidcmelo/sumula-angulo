@@ -1,4 +1,5 @@
 'use Client'
+import ".././app/globals.css"
 export default function TimeDois(){
     
     const equipes={
@@ -68,14 +69,7 @@ export default function TimeDois(){
                     "nome": "Jogador 15",
                     "registro": "123456789"
                 },
-                {
-                    "nome": "Jogador 16",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 17",
-                    "registro": "123456789"
-                },
+
 
             ]
         },
@@ -145,21 +139,15 @@ export default function TimeDois(){
                     "nome": "Jogador 15",
                     "registro": "123456789"
                 },
-                {
-                    "nome": "Jogador 16",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 17",
-                    "registro": "123456789"
-                },
+
             ]
         }
     }
+    
     return(
         <main>
-        <div className='flex justify-center mt-2 border-2 border-black border-b-0'>
-                <table className=' text-[8px] w-full'>
+            <div className='flex justify-center  '>
+                <table className=' text-[8px] w-1/2 m-1 border border-black'>
                     <tr >
                         <td className='font-bold uppercase '>TIME: {equipes.time2.nome}</td>
                         <td className='font-bold uppercase '>TÉCNICO: {equipes.time2.tecnico}</td>
@@ -167,9 +155,8 @@ export default function TimeDois(){
                     </tr>
                 </table>
             </div>
-        
             <div className=' flex justify-center' >
-                <table className='tabela-tres w-full text-[8px]'>
+                <table className='timeum border-r-0 w-full text-[8px]'>
                     <thead className='bg-gray-300 '>
                         <tr>
                             <th className='w-1/6  '>REGISTRO</th>
@@ -204,12 +191,11 @@ export default function TimeDois(){
                         </tr>
                     </tbody>
                 </table>
-        
-                <div className='border border-black  flex flex-col w-[10%]' >
-                    <table className='text-[8px]  '  >
+                <div className='border border-black border-t-0 border-l-0 flex flex-col ' >
+                    <table className='text-[8px] '  >
                         <thead >
                             <tr>
-                                <th colSpan={6}  className='bg-gray-300'>ACUMULADAS</th>
+                                <th colSpan={6}  className='bg-gray-300 '>ACUMULADAS</th>
                             </tr>
                         </thead>
                         <tbody className='text-center' >
@@ -242,24 +228,22 @@ export default function TimeDois(){
                             </tr>
                         </tbody>
                     </table>
-
                     <div className="h-full flex items-center justify-center">
-                        <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center">
-                        <tr className="">
-                            <td className="whitespace-nowrap pb-6 border-0 ">
-                            ASSINATURA DO TÉCNICO
-                            </td>
-                        </tr>
-                        
-                        <tr className="">
-                            <td className="whitespace-nowrap pb-5 h-full w-full border-0 ">
-                            ASSINATURA DO CAPITÃO
-                            </td>
-                        </tr>
+                        <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center border-none">
+                            <tr className="">
+                                <td className="whitespace-nowrap pb-6 border-none ">
+                                    ASSINATURA DO TÉCNICO
+                                </td>
+                            </tr>
+                            <tr className="">
+                                <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
+                                    ASSINATURA DO CAPITÃO
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
-    </main>
+        </main>
     )
 }

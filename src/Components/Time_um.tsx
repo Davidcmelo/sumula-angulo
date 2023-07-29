@@ -1,4 +1,5 @@
 'use client'
+import ".././app/globals.css"
 
 export default function TimeUm(){
     
@@ -69,14 +70,7 @@ export default function TimeUm(){
                     "nome": "Jogador 15",
                     "registro": "123456789"
                 },
-                {
-                    "nome": "Jogador 16",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 17",
-                    "registro": "123456789"
-                },
+
 
             ]
         },
@@ -146,121 +140,110 @@ export default function TimeUm(){
                     "nome": "Jogador 15",
                     "registro": "123456789"
                 },
-                {
-                    "nome": "Jogador 16",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 17",
-                    "registro": "123456789"
-                },
+
             ]
         }
     }
     return(
         <main>
-            <div className='flex justify-center mt-2 border-2 border-solid border-black border-b-0'>
-                    <table className=' text-[8px] w-full'>
-                        <tr >
-                            <td className='font-bold uppercase '>TIME: {equipes.time1.nome}</td>
-                            <td className='font-bold uppercase '>TÉCNICO: {equipes.time1.tecnico}</td>
-                            <td className='font-bold uppercase '>CAPITAO: {equipes.time1.capitao}</td>
+            <div className='flex justify-center m-2  border-b-0'>
+                <table className=' text-[8px] w-1/2 timeum'>
+                    <tr >
+                        <td className='font-bold uppercase '>TIME: {equipes.time1.nome}</td>
+                        <td className='font-bold uppercase '>TÉCNICO: {equipes.time1.tecnico}</td>
+                        <td className='font-bold uppercase '>CAPITAO: {equipes.time1.capitao}</td>
+                    </tr>
+                </table>
+            </div>
+            <div className=' flex justify-center '  >
+                <table className=' w-full text-[8px] timeum border-r-0'>
+                    <thead className='bg-gray-300 '>
+                        <tr>
+                            <th className='w-1/6  '>REGISTRO</th>
+                            <th className='w-6/12'>JOGADORES</th>
+                            <th>Nº</th>
+                            <th>I</th>
+                            <th >C AMAR.</th>
+                            <th >C VERM.</th>
                         </tr>
-                    </table>
-                </div>
-            
-                <div className=' flex justify-center' >
-                    <table className='tabela-tres w-full text-[8px]'>
-                        <thead className='bg-gray-300 '>
+                    </thead>
+                    <tbody>
+                        {equipes.time1.jogadores.map((jogador, index) => (
+                            <tr key={index}>
+                                <td className='text-center'>{jogador.registro}</td>
+                                <td>{jogador.nome}</td>
+                                <td className='w-10'></td>
+                                <td className='w-10'></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        ))}
+                        <tr>
+                            <td></td>
+                            <td colSpan={1}>TÉCNICO:</td>
+                            <td colSpan={4}>AUXILIR 1:</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colSpan={1}>MÉDICO / FISIOTERAPEUTA:</td>
+                            <td colSpan={4}>AUXILIAR 2:</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div className='border border-black border-t-0 border-l-0 flex flex-col ' >
+                    <table className='text-[8px]'  >
+                        <thead >
                             <tr>
-                                <th className='w-1/6  '>REGISTRO</th>
-                                <th className='w-6/12'>JOGADORES</th>
-                                <th>Nº</th>
-                                <th>I</th>
-                                <th >C AMAR.</th>
-                                <th >C VERM.</th>
+                                <th colSpan={6}  className='bg-gray-300 '>ACUMULADAS</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {equipes.time1.jogadores.map((jogador, index) => (
-                                <tr key={index}>
-                                    <td className='text-center'>{jogador.registro}</td>
-                                    <td>{jogador.nome}</td>
-                                    <td className='w-10'></td>
-                                    <td className='w-10'></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            ))}
+                        <tbody className='text-center' >
                             <tr>
-                                <td></td>
-                                <td colSpan={1}>TÉCNICO:</td>
-                                <td colSpan={4}>AUXILIR 1:</td>
-            
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td colSpan={1}>MÉDICO / FISIOTERAPEUTA:</td>
-                                <td colSpan={4}>AUXILIAR 2:</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td colSpan={6} className='bg-gray-300' >PEDIDOS DE TEMPO</td>
+                            </tr>
+                            <tr>
+                                <td colSpan={3}>1º PER.</td>
+                                <td colSpan={3}>2º PER.</td>
+                            </tr>
+                            <tr>
+                                <td colSpan={3}>&#8203;</td>
+                                <td colSpan={3}>&#8203;</td>
                             </tr>
                         </tbody>
                     </table>
-            
-                    <div className='border border-black  flex flex-col w-[10%]' >
-                        <table className='text-[8px]  '  >
-                            <thead >
-                                <tr>
-                                    <th colSpan={6}  className='bg-gray-300'>ACUMULADAS</th>
-                                </tr>
-                            </thead>
-                            <tbody className='text-center' >
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={6} className='bg-gray-300' >PEDIDOS DE TEMPO</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={3}>1º PER.</td>
-                                    <td colSpan={3}>2º PER.</td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={3}>&#8203;</td>
-                                    <td colSpan={3}>&#8203;</td>
-                                </tr>
-                            </tbody>
-                        </table>
 
-                        <div className="h-full flex items-center justify-center">
-                            <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center">
+                    <div className="h-full flex items-center justify-center">
+                        <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center border-none">
                             <tr className="">
-                                <td className="whitespace-nowrap pb-6 border-0 ">
+                                <td className="whitespace-nowrap pb-6 border-none ">
                                 ASSINATURA DO TÉCNICO
                                 </td>
                             </tr>
-                            
                             <tr className="">
-                                <td className="whitespace-nowrap pb-5 h-full w-full border-0 ">
+                                <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
                                 ASSINATURA DO CAPITÃO
                                 </td>
                             </tr>
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
+            </div>
         </main>
     )
 }

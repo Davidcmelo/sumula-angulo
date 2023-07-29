@@ -19,22 +19,23 @@
 
 /* primeira tabela*/
 
-.tabela-um th,
-.tabela-um td {
-  border: 1px solid black;
-  
-  
-}
-
-.tabela-dois th, td{
+/* .timeum td{
   border:1px solid black;
+} */
+
+table {
+  border-collapse: collapse;
 }
 
-.tabela-tres th,
-.tabela-tres tr, 
-.tabela-tres td{
-  border:1px solid black
+td, th {
+  border: 1px solid #000;
+font-size: 5px;
+font-weight: bold;
+padding-bottom: 7px;
+padding-top: 0;
+text-transform: uppercase;
 }
 
-
-
+input{
+  text-transform: uppercase;
+}
