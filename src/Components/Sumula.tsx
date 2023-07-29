@@ -170,7 +170,7 @@ export default function Home() {
             ]
         }
     }
-    const ref = useRef<HTMLDivElement>(null);
+    // const ref = useRef<HTMLDivElement>(null);
 
     const handleDownloadPDF = () => {
         const element = document.getElementById('pdf-content');
@@ -192,7 +192,7 @@ export default function Home() {
 
     return (
         <div>        
-            <main className=' flex flex-col ' ref={ref} id='pdf-content' >
+            <main className=' flex flex-col ' id='pdf-content' >
             {/* <Pdf targetRef={ref} filename="code-example.pdf" options={options}>
                 {({ toPdf }:any) => <button onClick={toPdf}>Generate Pdf</button>}
             </Pdf> */}
