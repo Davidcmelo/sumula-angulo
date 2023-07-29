@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import '../app/globals.css'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Time_um from './Time_um';
 import Gols from './Gols';
 import TableUm from './TableUm';
@@ -185,9 +185,13 @@ export default function Home() {
     //     }
     // };
 
-    const handleDownloadPDF = () => {
-        generatePDF();
-      };
+    useEffect(() => {
+        // Verifica se o código está sendo executado no lado do cliente antes de chamar a função generatePDF
+        if (typeof window !== 'undefined') {
+          // Executa a função generatePDF somente no lado do cliente
+          generatePDF();
+        }
+      }, []);
 
     return (
         <div>        
@@ -236,7 +240,7 @@ export default function Home() {
                 <Gols/>
             </main>
             <div className='m-2'>
-                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
+                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={generatePDF}> GERAR PDF</button>
             </div>
         </div>
     )

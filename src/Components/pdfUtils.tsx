@@ -1,3 +1,4 @@
+'use client'
 import html2pdf from 'html2pdf.js';
 
 export const generatePDF = () => {
