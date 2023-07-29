@@ -184,13 +184,11 @@ export default function Home() {
       
 
 
-//@ts-ignore
-import('html2pdf.js').then((html2pdf) => {
 
-    html2pdf.default(element,opt).from(element).set(opt).save();
+        import('html2pdf.js').then((html2pdf) => {
+            html2pdf.default(element,opt).from(element).set(opt).save();
 
-    
-  });
+        });
 
 // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
     //   // print the base64 string, call save instead of outputPdf if you just want to save it.    

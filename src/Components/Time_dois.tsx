@@ -1,4 +1,4 @@
-'use Client'
+
 import ".././app/globals.css"
 export default function TimeDois(){
     
@@ -148,11 +148,13 @@ export default function TimeDois(){
         <main>
             <div className='flex justify-center  '>
                 <table className=' text-[8px] w-1/2 m-1 border border-black'>
-                    <tr >
-                        <td className='font-bold uppercase '>TIME: {equipes.time2.nome}</td>
-                        <td className='font-bold uppercase '>TÉCNICO: {equipes.time2.tecnico}</td>
-                        <td className='font-bold uppercase '>CAPITAO: {equipes.time2.capitao}</td>
-                    </tr>
+                    <thead>
+                        <tr >
+                            <td className='font-bold uppercase '>TIME: {equipes.time2.nome}</td>
+                            <td className='font-bold uppercase '>TÉCNICO: {equipes.time2.tecnico}</td>
+                            <td className='font-bold uppercase '>CAPITAO: {equipes.time2.capitao}</td>
+                        </tr>
+                    </thead>
                 </table>
             </div>
             <div className=' flex justify-center' >
@@ -230,16 +232,18 @@ export default function TimeDois(){
                     </table>
                     <div className="h-full flex items-center justify-center">
                         <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center border-none">
-                            <tr className="">
-                                <td className="whitespace-nowrap pb-6 border-none ">
-                                    ASSINATURA DO TÉCNICO
-                                </td>
-                            </tr>
-                            <tr className="">
-                                <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
-                                    ASSINATURA DO CAPITÃO
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr className="">
+                                    <td className="whitespace-nowrap pb-6 border-none ">
+                                        ASSINATURA DO TÉCNICO
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
+                                        ASSINATURA DO CAPITÃO
+                                    </td>
+                                </tr>
+                            </thead>
                         </table>
                     </div>
                 </div>
