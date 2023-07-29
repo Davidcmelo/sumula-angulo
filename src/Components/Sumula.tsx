@@ -170,7 +170,7 @@ export default function Home() {
             ]
         }
     }
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleDownloadPDF = () => {
         const element = document.getElementById('pdf-content');
