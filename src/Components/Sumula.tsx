@@ -202,12 +202,13 @@ export default function Home() {
                 </div>
                 <header className='flex justify-center '>
                     <div className=' flex items-center'>
-                        <Image
+                        {/* <Image
                             src='/imagens/vasco.png'
                             alt='vasco'
                             width={50}
                             height={50}
-                        />
+                        /> */}
+                        <p>img time 1</p>
                         {/* <input type="text" className='border border-black text-center  ' value={equipes.time1.nome}   /> */}
                         <div className='border border-black  pb-3 text-xs  w-44 '>
                             <h4 className=' uppercase pr-10  pl-2 font-bold'>{equipes.time1.nome}</h4>
@@ -225,12 +226,13 @@ export default function Home() {
                         <div className='border border-black pb-3  text-xs w-44 '> 
                             <h4 className=' pl-10 pr-2 uppercase font-bold'>{equipes.time2.nome}</h4>
                         </div>
-                        <Image
+                        {/* <Image
                             src='/imagens/flamengo.png'
                             alt='flamengo'
                             width={50}
                             height={50}
-                        />
+                        /> */}
+                        <p>img time 2</p>
                     </div>
                 </header>
                 <TableUm/>
