@@ -170,9 +170,9 @@ export default function Home() {
             ]
         }
     }
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef(null);
 
-    const handleDownloadPDF = (html2pdf:any) => {
+    const handleDownloadPDF = () => {
         const element = document.getElementById('pdf-content');
        
         const opt = {
@@ -183,7 +183,12 @@ export default function Home() {
             jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
         };
   
-        html2pdf().from(element).set(opt).save();
+        // html2pdf(element, opt).from(element).set(opt).save();
+        if (element) {
+            html2pdf(element, opt).from(element).set(opt).save();
+        } else {
+            console.error('Element with id "pdf-content" not found.');
+        }
     };
 
     return (
