@@ -166,29 +166,29 @@ export default function Home() {
             ]
         }
     }
-    const ref = useRef(null);
+    // const ref = useRef(null);
     
-    const handleDownloadPDF = () => {
-        const element = document.getElementById('pdf-content');
-        if (!element) {
-            console.error('Element with id "pdf-content" not found.');
-            return;
-          }
-        const opt = {
-          margin: 0.5,
-          filename: 'sumula_angulo.pdf',
-          image: { type: 'png', quality: 1 },
-          html2canvas: { scale: 3 },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-        };
+    // const handleDownloadPDF = () => {
+    //     const element = document.getElementById('pdf-content');
+    //     if (!element) {
+    //         console.error('Element with id "pdf-content" not found.');
+    //         return;
+    //       }
+    //     const opt = {
+    //       margin: 0.5,
+    //       filename: 'sumula_angulo.pdf',
+    //       image: { type: 'png', quality: 1 },
+    //       html2canvas: { scale: 3 },
+    //       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+    //     };
       
 
 
 
-        import('html2pdf.js').then((html2pdf) => {
-            html2pdf.default(element,opt).from(element).set(opt).save();
+    //     import('html2pdf.js').then((html2pdf) => {
+    //         html2pdf.default(element,opt).from(element).set(opt).save();
 
-        });
+    //     });
 
 // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
     //   // print the base64 string, call save instead of outputPdf if you just want to save it.    
@@ -204,10 +204,10 @@ export default function Home() {
         // } else {
         //   console.error('HTML2PDF.js can only be used in the browser environment.');
         // }
-      };
+    //   };
     return (
         <div>        
-            <main className=' flex flex-col ' id='pdf-content' ref={ref}>            
+            <main className=' flex flex-col ' id='pdf-content' >            
                 <div className='flex justify-center' >
                     <h1 className="text-xl font-semibold">COPA ANGULO DE FUTSAL</h1>
                 </div>
@@ -252,7 +252,7 @@ export default function Home() {
                 <Gols/>
             </main>
             <div className='m-2'>
-                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
+                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  > GERAR PDF</button>
             </div>
         </div>
     )
