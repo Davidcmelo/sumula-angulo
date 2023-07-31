@@ -7,6 +7,7 @@ import Gols from './Gols';
 import TableUm from './TableUm';
 import TableDois from './TableDois';
 import Time_dois from './Time_dois';
+import html2pdf from 'html2pdf.js';
 
 
 
@@ -166,7 +167,8 @@ export default function Home() {
             ]
         }
     }
-    const ref = useRef(null);
+    // const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
     
     const handleDownloadPDF = () => {
         const element = document.getElementById('pdf-content');
@@ -174,21 +176,37 @@ export default function Home() {
             console.error('Element with id "pdf-content" not found.');
             return;
           }
-        const opt = {
-          margin: 0.5,
-          filename: 'sumula_angulo.pdf',
-          image: { type: 'png', quality: 1 },
-          html2canvas: { scale: 3 },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        };
+        // const opt = {
+        //   margin: 0.5,
+        //   filename: 'sumula_angulo.pdf',
+        //   image: { type: 'png', quality: 1 },
+        //   html2canvas: { scale: 3 },
+        //   jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+        // };
       
+        // const handleDownloadPDF = () => {
+            // const element = document.getElementById('pdf-content');
+    
+            const opt = {
+                margin: 0.5,
+                filename: 'sumula_angulo.pdf',
+                image: { type: 'png', quality: 1 },
+                html2canvas: { scale: 3},
+                jsPDF: { unit: 'in', format: 'a4', orientation:'portrait' },
+            };
+    
+        html2pdf(element, opt).from(element).set(opt).save();
+    //   };
+    
+    
+          
+    }
 
 
+        // import('html2pdf.js').then((html2pdf) => {
+        //     html2pdf.default(element,opt).from(element).set(opt).save();
 
-        import('html2pdf.js').then((html2pdf) => {
-            html2pdf.default(element,opt).from(element).set(opt).save();
-
-        });
+        // });
 
 // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
     //   // print the base64 string, call save instead of outputPdf if you just want to save it.    
@@ -204,7 +222,7 @@ export default function Home() {
         // } else {
         //   console.error('HTML2PDF.js can only be used in the browser environment.');
         // }
-      };
+      
     return (
         <div>        
             <main className=' flex flex-col ' id='pdf-content' ref={ref}>            
