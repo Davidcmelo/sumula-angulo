@@ -211,8 +211,8 @@ export default function Home() {
         // }
       
     return (
-        <div>        
-            <main className=' flex flex-col ' id='pdf-content' ref={ref}>            
+        <div id='pdf-content'  ref={ref} className='flex justify-center'>        
+            <main className=' flex flex-col '  ref={ref}>            
                 <div className='flex justify-center' >
                     <h1 className="text-xl font-semibold">COPA ANGULO DE FUTSAL</h1>
                 </div>
@@ -257,7 +257,7 @@ export default function Home() {
                 <Gols/>
             </main>
             <div className='m-2'>
-                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
+                <button className='border border-black rounded-lg  px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
             </div>
         </div>
     )
