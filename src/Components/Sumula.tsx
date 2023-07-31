@@ -179,7 +179,7 @@ export default function Home() {
           filename: 'sumula_angulo.pdf',
           image: { type: 'png', quality: 1 },
           html2canvas: { scale: 3 },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
         };
       
 
