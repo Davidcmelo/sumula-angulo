@@ -181,7 +181,7 @@ export default function Home() {
             filename: 'sumula_angulo.pdf',
             image: { type: 'png', quality: 1 },
             html2canvas: { scale: 3 },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
         };
 
 
@@ -257,7 +257,7 @@ export default function Home() {
                 <Gols/>
             </main>
             <div className='m-2'>
-                <button className='border border-black rounded-lg p-2 px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
+                <button className='border border-black rounded-lg text-[10px] px-4 bg-gray-300 font-bold hover:bg-gray-400 transition-all'  onClick={handleDownloadPDF}> GERAR PDF</button>
             </div>
         </div>
     )

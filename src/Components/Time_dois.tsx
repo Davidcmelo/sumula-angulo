@@ -4,7 +4,7 @@ export default function TimeDois(){
     
     const equipes={
         "time1": {
-            "nome": "Time Futebol FC",
+            "nome": "Time Vasco FC",
             "escudo": "caminho/do/escudo.png",
             "tecnico": "José da Silva",
             "capitao": "Jogador 10",
@@ -74,7 +74,7 @@ export default function TimeDois(){
             ]
         },
         "time2": {
-            "nome": "Time Dois FC",
+            "nome": "Time Flamengo FC",
             "escudo": "caminho/do/escudo.png",
             "tecnico": "João Carlos",
             "capitao": "Jogador 10",
