@@ -1,6 +1,8 @@
 
 
-import Sumula from '@/components/Sumula'
+
+
+import Sumula from '@/components/sumula'
 import '../app/styles.css'
 import React from 'react'
 

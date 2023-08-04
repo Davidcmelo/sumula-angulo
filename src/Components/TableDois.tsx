@@ -1,7 +1,7 @@
 
 import ".././app/styles.css"
 
-export default function TableDois(){
+export function TableDois(){
     return(
         <div className='flex justify-center pt-2'>
             <table className='text-[8px] w-full '>

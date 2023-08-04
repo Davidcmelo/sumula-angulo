@@ -2,7 +2,7 @@
 import React from "react";
 import ".././app/styles.css"
 
-export default function Gols() {
+export function Gols() {
     return (
         <div className='flex items-center justify-center m-1'>
         <table className='text-[8px] text-center flex justify-center timeum'>

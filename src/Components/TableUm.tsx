@@ -1,7 +1,7 @@
 
 import ".././app/styles.css"
 
-export default function TableUm(){
+export  function TableUm(){
     return(
         <div className='flex justify-center '>
             <table className='w-full text-[8px] tabela-um text-center' >

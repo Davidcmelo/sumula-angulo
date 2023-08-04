@@ -1,7 +1,7 @@
 
 import ".././app/styles.css"
 
-export default function TimeUm(){
+export function TimeUm(){
     
     const equipes={
         "time1": {

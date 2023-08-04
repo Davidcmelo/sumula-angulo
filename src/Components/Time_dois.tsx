@@ -1,6 +1,6 @@
 
 import ".././app/styles.css"
-export default function TimeDois(){
+export function TimeDois(){
     
     const equipes={
         "time1": {
