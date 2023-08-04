@@ -1,7 +1,8 @@
 
+import Sumula from '@/components/Sumula'
 import './globals.css'
 import React from 'react'
-import Sumula from '@/Components/Sumula'
+
 
 export default function Home() {
     return (

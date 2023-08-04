@@ -2,11 +2,12 @@
 import Image from 'next/image'
 import '../app/styles.css'
 import React, { useRef } from 'react'
-import Time_um from './Time_um';
-import Gols from './Gols';
-import TableUm from './TableUm';
-import TableDois from './TableDois';
-import Time_dois from './Time_dois';
+import TableUm from './TableUm'
+import TableDois from './TableDois'
+import Time_um from './Time_um'
+import Gols from './Gols'
+import Time_dois from './Time_dois'
+
 
 
 
