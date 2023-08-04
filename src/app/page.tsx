@@ -1,6 +1,6 @@
 
 import Sumula from '@/components/Sumula'
-import './globals.css'
+import '../app/styles.css'
 import React from 'react'
 
 
