@@ -1,6 +1,7 @@
 
-import ".././app/styles.css"
-export function TimeDois(){
+import "@/app/styles.css"
+
+export function TimeUm(){
     
     const equipes={
         "time1": {
@@ -143,22 +144,21 @@ export function TimeDois(){
             ]
         }
     }
-    
     return(
         <main>
-            <div className='flex justify-center  '>
-                <table className=' text-[8px] w-1/2 m-1 border border-black'>
+            <div className='flex justify-center m-2  border-b-0'>
+                <table className=' text-[8px] w-1/2 timeum'>
                     <thead>
                         <tr >
-                            <td className='font-bold uppercase '>TIME: {equipes.time2.nome}</td>
-                            <td className='font-bold uppercase '>TÉCNICO: {equipes.time2.tecnico}</td>
-                            <td className='font-bold uppercase '>CAPITAO: {equipes.time2.capitao}</td>
+                            <td className='font-bold uppercase '>TIME: {equipes.time1.nome}</td>
+                            <td className='font-bold uppercase '>TÉCNICO: {equipes.time1.tecnico}</td>
+                            <td className='font-bold uppercase '>CAPITAO: {equipes.time1.capitao}</td>
                         </tr>
                     </thead>
                 </table>
             </div>
-            <div className=' flex justify-center' >
-                <table className='timeum border-r-0 w-full text-[8px]'>
+            <div className=' flex justify-center '  >
+                <table className=' w-full text-[8px] timeum border-r-0'>
                     <thead className='bg-gray-300 '>
                         <tr>
                             <th className='w-1/6  '>REGISTRO</th>
@@ -170,7 +170,7 @@ export function TimeDois(){
                         </tr>
                     </thead>
                     <tbody>
-                        {equipes.time2.jogadores.map((jogador, index) => (
+                        {equipes.time1.jogadores.map((jogador, index) => (
                             <tr key={index}>
                                 <td className='text-center'>{jogador.registro}</td>
                                 <td>{jogador.nome}</td>
@@ -184,7 +184,6 @@ export function TimeDois(){
                             <td></td>
                             <td colSpan={1}>TÉCNICO:</td>
                             <td colSpan={4}>AUXILIR 1:</td>
-        
                         </tr>
                         <tr>
                             <td></td>
@@ -194,7 +193,7 @@ export function TimeDois(){
                     </tbody>
                 </table>
                 <div className='border border-black border-t-0 border-l-0 flex flex-col ' >
-                    <table className='text-[8px] '  >
+                    <table className='text-[8px]'  >
                         <thead >
                             <tr>
                                 <th colSpan={6}  className='bg-gray-300 '>ACUMULADAS</th>
@@ -230,20 +229,21 @@ export function TimeDois(){
                             </tr>
                         </tbody>
                     </table>
+
                     <div className="h-full flex items-center justify-center">
                         <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center border-none">
-                            <thead>
+                            <tbody>
                                 <tr className="">
                                     <td className="whitespace-nowrap pb-6 border-none ">
-                                        ASSINATURA DO TÉCNICO
+                                    ASSINATURA DO TÉCNICO
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
-                                        ASSINATURA DO CAPITÃO
+                                    ASSINATURA DO CAPITÃO
                                     </td>
                                 </tr>
-                            </thead>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -251,3 +251,5 @@ export function TimeDois(){
         </main>
     )
 }
+
+

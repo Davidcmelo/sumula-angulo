@@ -1,6 +1,6 @@
 
 import React from "react";
-import ".././app/styles.css"
+import "@/app/styles.css"
 
 export function Gols() {
     return (

@@ -1,5 +1,5 @@
 
-import ".././app/styles.css"
+import "@/app/styles.css"
 
 export  function TableUm(){
     return(

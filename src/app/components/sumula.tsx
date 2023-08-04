@@ -1,18 +1,12 @@
 'use client'
 import Image from 'next/image'
-import '../app/styles.css'
+import '@/app/styles.css'
 import React, { useRef } from 'react'
 import {TableDois} from './tableDois'
 import {TableUm} from './tableUm'
 import {TimeUm} from './time_um'
 import {Gols} from './gols'
 import {TimeDois} from './time_dois'
-
-
-
-
-
-
 
 export function Sumula() {
   
