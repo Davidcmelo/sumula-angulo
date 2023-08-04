@@ -14,7 +14,7 @@ import {TimeDois} from './time_dois'
 
 
 
-export default function Sumula() {
+export function Sumula() {
   
     const equipes={
         "time1": {
