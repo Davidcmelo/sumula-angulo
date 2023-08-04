@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import '../app/globals.css'
+import '../app/styles.css'
 import React, { useRef } from 'react'
 import Time_um from './Time_um';
 import Gols from './Gols';

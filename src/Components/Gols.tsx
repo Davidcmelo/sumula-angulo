@@ -1,6 +1,6 @@
 
 import React from "react";
-import ".././app/globals.css"
+import ".././app/styles.css"
 
 export default function Gols() {
     return (

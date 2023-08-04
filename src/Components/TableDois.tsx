@@ -1,5 +1,5 @@
 
-import ".././app/globals.css"
+import ".././app/styles.css"
 
 export default function TableDois(){
     return(
