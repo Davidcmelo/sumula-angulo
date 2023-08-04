@@ -13,7 +13,7 @@ import Time_dois from './Time_dois'
 
 
 
-export default function Home() {
+export default function Sumula() {
   
     const equipes={
         "time1": {
