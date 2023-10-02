@@ -1,12 +1,11 @@
+import '@/app/styles.css';
 
-import "@/app/styles.css"
-
-export function TableDois(){
-    return(
-        <div className='flex justify-center pt-2'>
-            <table className='text-[8px] w-full '>
-                <tbody >
-                    <tr >
+export function TableDois({ dados }: any) {
+    return (
+        <div className="flex justify-center pt-2">
+            <table className="w-1/2 w-full text-[10px] ">
+                <tbody>
+                    <tr>
                         <td>ÁRBITRO PRINCIPAL:</td>
                         <td>ASSINATURA:</td>
                     </tr>
@@ -29,5 +28,5 @@ export function TableDois(){
                 </tbody>
             </table>
         </div>
-    )
+    );
 }

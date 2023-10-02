@@ -1,0 +1,388 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model atletas {
+  id                       Int                        @id @default(autoincrement())
+  external_id              String                     @unique(map: "Atletas_external_id_key") @default(cuid()) @db.VarChar(30)
+  nome                     String                     @db.VarChar(60)
+  apelido                  String?                    @db.VarChar(30)
+  foto                     String?                    @db.VarChar(40)
+  rg                       String?                    @db.VarChar(11)
+  posicao                  posicao?
+  data_nascimento          DateTime?                  @db.Date
+  time_id                  Int?
+  created_at               DateTime                   @default(now())
+  updated_at               DateTime                   @updatedAt
+  times                    times?                     @relation(fields: [time_id], references: [id])
+  atletas_times_categorias atletas_times_categorias[]
+  campeonatos_atletas      campeonatos_atletas[]
+  estatisticas             estatisticas_jogos[]
+  suspensao                campeonatos_suspensao[]
+
+  @@index([time_id])
+}
+
+model atletas_times_categorias {
+  id               Int              @id @default(autoincrement())
+  atleta_id        Int
+  categoria_id     Int
+  atletas          atletas          @relation(fields: [atleta_id], references: [id], onDelete: Cascade)
+  times_categorias times_categorias @relation(fields: [categoria_id], references: [id], onDelete: Cascade)
+
+  @@unique([atleta_id, categoria_id])
+  @@index([categoria_id])
+}
+
+model campeonatos {
+  id            Int                      @id @default(autoincrement())
+  external_id   String                   @unique(map: "Campeonatos_external_id_key") @default(cuid()) @db.VarChar(30)
+  nome          String                   @db.VarChar(60)
+  modalidade    campeonatos_modalidade
+  data_inicio   DateTime                 @db.Date
+  tem_categoria Boolean                  @default(false)
+  user_id       Int
+  created_at    DateTime                 @default(now())
+  updated_at    DateTime                 @updatedAt
+  user          user                     @relation(fields: [user_id], references: [id])
+  atletas       campeonatos_atletas[]
+  categorias    campeonatos_categorias[]
+  times         campeonatos_times[]
+  moderador     moderador[]
+  classificacao campeonatos_classificacao[]
+  suspensao     campeonatos_suspensao[]
+  jogos         campeonatos_jogos[]  
+
+  @@index([user_id])
+}
+
+model campeonatos_categorias {
+  id              Int                   @id @default(autoincrement())
+  nome            String?               @db.VarChar(30)
+  campeonato_id   Int
+  qtd_times       Int
+  qtd_grupos      Int?
+  created_at      DateTime              @default(now())
+  updated_at      DateTime              @updatedAt
+  genero          campeonatos_genero?
+  mata_mata       initial_mata_mata?
+  tipo_campeonato tipo_campeonato?
+  atletas         campeonatos_atletas[]
+  campeonatos     campeonatos           @relation(fields: [campeonato_id], references: [id])
+  fases           fases[]
+  estatisticas    estatisticas_jogos[]
+  suspensao       campeonatos_suspensao[]
+  jogos           campeonatos_jogos[]
+
+  @@index([campeonato_id])
+}
+
+model campeonatos_suspensao {
+  id              Int                   @id @default(autoincrement())
+  campeonato_id   Int
+  categoria_id    Int
+  atleta_id       Int
+
+  amarelo         Int
+  vermelho        Int
+  jogos_punidos   Int
+  jogos_cumpridos Int
+  status          status_suspensao      @default(P)
+  automatico      simOuNao              
+
+  campeonato      campeonatos           @relation(fields: [campeonato_id], references: [id])
+  categoria       campeonatos_categorias @relation(fields: [categoria_id], references: [id])
+  atleta          atletas                @relation(fields: [atleta_id], references: [id])
+
+  created_at      DateTime              @default(now())
+  updated_at      DateTime              @updatedAt
+}
+
+model campeonatos_atletas {
+  id            Int                    @id @default(autoincrement())
+  campeonato_id Int
+  categoria_id  Int
+  atleta_id     Int
+  time_id       Int
+  created_at    DateTime               @default(now())
+  updated_at    DateTime               @updatedAt
+  atleta        atletas                @relation(fields: [atleta_id], references: [id])
+  campeonato    campeonatos            @relation(fields: [campeonato_id], references: [id])
+  categoria     campeonatos_categorias @relation(fields: [categoria_id], references: [id])
+  time          times                  @relation(fields: [time_id], references: [id])
+
+  @@unique([categoria_id, atleta_id])
+}
+
+model campeonatos_times {
+  time_id       Int
+  campeonato_id Int
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  campeonatos   campeonatos @relation(fields: [campeonato_id], references: [id])
+  times         times       @relation(fields: [time_id], references: [id])
+
+  @@id([campeonato_id, time_id])
+  @@index([time_id])
+}
+
+model campeonatos_grupos {
+  id            Int                         @id @default(autoincrement())
+  nome          String                      @db.VarChar(30)
+  created_at    DateTime                    @default(now())
+  updated_at    DateTime                    @updatedAt
+  fase_id       Int
+  classificacao campeonatos_classificacao[]
+  fase          fases                       @relation(fields: [fase_id], references: [id], onDelete: Cascade)
+  jogos         campeonatos_jogos[] @relation("grupo")
+}
+
+model fases {
+  id                 Int                    @id @default(autoincrement())
+  nome               String                 @db.VarChar(30)
+  categoria_id       Int
+  created_at         DateTime               @default(now())
+  updated_at         DateTime               @updatedAt
+  is_classificatoria simOuNao               @default(N)
+  is_mata_mata       simOuNao               @default(N)
+  is_grupo           simOuNao               @default(N)
+  grupos             campeonatos_grupos[]
+  rodadas            campeonatos_rodadas[]
+  categorias         campeonatos_categorias @relation(fields: [categoria_id], references: [id])
+  classificacao      campeonatos_classificacao[]
+
+  @@index([categoria_id])
+}
+
+model campeonatos_rodadas {
+  id         Int @id @default(autoincrement())
+  numero     Int
+  fase_id    Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt  
+
+  fase       fases @relation(fields: [fase_id], references: [id], onDelete: Cascade)
+  jogos      campeonatos_jogos[]
+}
+
+model campeonatos_classificacao {
+  id         Int                 @id @default(autoincrement())
+  campeonato_id Int
+  fase_id    Int
+  grupo_id   Int?
+  time_id    Int?
+  pontos     Int                 @default(0)
+  jogos      Int                 @default(0)
+  vitorias   Int                 @default(0)
+  empates    Int                 @default(0)
+  derrotas   Int                 @default(0)
+  golsPro    Int                 @default(0)
+  golsContra Int                 @default(0)
+  created_at DateTime            @default(now())
+  updated_at DateTime            @updatedAt
+  grupos     campeonatos_grupos? @relation(fields: [grupo_id], references: [id], onDelete: Cascade)
+  times      times?              @relation(fields: [time_id], references: [id])
+  campeonatos campeonatos?       @relation(fields: [campeonato_id], references: [id], onDelete: Cascade)
+  fase       fases               @relation(fields: [fase_id], references: [id], onDelete: Cascade)
+}
+
+
+model campeonatos_jogos {
+  id                Int @id @default(autoincrement())
+  data_hora         DateTime?
+  local             String?  @db.VarChar(50)
+  status            status_partida @default(A)
+  campeonato_id     Int
+  categoria_id      Int
+  rodada_id         Int
+  grupo_id          Int?
+  time_casa_id      Int
+  time_visitante_id Int
+  gols_casa         Int?
+  gols_visitante    Int?
+  vencedor          vencedor_partida?
+  ida_volta         simOuNao?
+  numero_mata_mata  Int?
+
+  rodada            campeonatos_rodadas @relation(fields: [rodada_id], references: [id])
+  timeCasa          times @relation("time_casa", fields: [time_casa_id], references: [id])  
+  timeVisitante     times @relation("time_visitante", fields: [time_visitante_id], references: [id])
+  grupo             campeonatos_grupos? @relation("grupo", fields: [grupo_id], references: [id])
+  estatisticas      estatisticas_jogos[]
+  campeonato        campeonatos @relation(fields: [campeonato_id], references: [id])
+  categoria         campeonatos_categorias @relation(fields: [categoria_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+}
+
+model estatisticas_jogos {
+  id           Int @id @default(autoincrement())
+  jogo_id      Int
+  categoria_id Int
+  atleta_id    Int
+  time_id      Int
+  gols_pro     Int @default(0)
+  gols_contra  Int @default(0)
+  assistencia  Int @default(0)
+  amarelo      Int @default(0)
+  vermelho     Int @default(0)
+  suspenso     simOuNao @default(N)
+
+  jogo         campeonatos_jogos @relation(fields: [jogo_id], references: [id] )
+  categoria    campeonatos_categorias @relation(fields: [categoria_id], references: [id])  
+  atleta       atletas @relation(fields: [atleta_id], references: [id])  
+  time         times @relation(fields: [time_id], references: [id])  
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+}
+
+model moderador {
+  id            Int         @id @default(autoincrement())
+  campeonato_id Int
+  user_id       Int
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  campeonatos   campeonatos @relation(fields: [campeonato_id], references: [id])
+  user          user        @relation(fields: [user_id], references: [id])
+
+  @@index([campeonato_id])
+  @@index([user_id])
+}
+
+model responsavel {
+  id          Int      @id @default(autoincrement())
+  external_id String   @unique(map: "Responsavel_external_id_key") @default(cuid()) @db.VarChar(30)
+  nome        String?  @db.VarChar(60)
+  email       String   @unique(map: "Responsavel_email_key") @db.VarChar(60)
+  celular     String?  @db.VarChar(15)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  password    String?
+  time_id     Int?     @unique
+  time        times?   @relation(fields: [time_id], references: [id])
+}
+
+model times {
+  id                  Int                         @id @default(autoincrement())
+  external_id         String                      @unique(map: "Times_external_id_key") @default(cuid()) @db.VarChar(30)
+  nome                String                      @db.VarChar(50)
+  escudo              String?                     @db.VarChar(40)
+  sigla               String?                     @db.VarChar(3)
+  created_at          DateTime                    @default(now())
+  updated_at          DateTime                    @updatedAt
+  atletas             atletas[]
+  campeonatos_atletas campeonatos_atletas[]
+  classificacao       campeonatos_classificacao[]
+  campeonatos_times   campeonatos_times[]
+  responsavel         responsavel?
+  times_categorias    times_categorias[]
+  jogos_casa          campeonatos_jogos[] @relation("time_casa")
+  jogos_visitante     campeonatos_jogos[] @relation("time_visitante")  
+  estatisticas        estatisticas_jogos[]
+}
+
+model times_categorias {
+  id                       Int                        @id @default(autoincrement())
+  nome                     String                     @db.VarChar(30)
+  time_id                  Int
+  created_at               DateTime                   @default(now())
+  updated_at               DateTime                   @updatedAt
+  atletas_times_categorias atletas_times_categorias[]
+  times                    times                      @relation(fields: [time_id], references: [id])
+
+  @@index([time_id])
+}
+
+model user {
+  id            Int           @id @default(autoincrement())
+  external_id   String        @unique(map: "User_external_id_key") @default(cuid()) @db.VarChar(30)
+  name          String?       @db.VarChar(50)
+  username      String?       @db.VarChar(50)
+  password      String
+  email         String?       @unique(map: "User_email_key") @db.VarChar(60)
+  emailVerified DateTime?
+  image         String?       @db.VarChar(50)
+  role          user_role     @default(user)
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+  campeonatos   campeonatos[]
+  moderador     moderador[]
+}
+
+enum campeonatos_modalidade {
+  FB // futebol
+  FS // futsal
+}
+
+enum campeonatos_genero {
+  M // masculino
+  F // feminino
+  X // misto
+}
+
+enum initial_mata_mata {
+  oitavas
+  quartas
+  semi
+  final
+}
+
+enum simOuNao {
+  S
+  N
+}
+
+enum tipo_campeonato {
+  PM // pontos corridos e mata-mata
+  GM // grupos e mata-mata
+  PC // pontos corridos
+  MM // mata mata
+}
+
+enum user_role {
+  admin
+  user
+}
+
+enum posicao {
+  GOL
+  ZAG
+  LD
+  LE
+  VOL
+  MC
+  PE
+  PD
+  ATA
+  FIXO
+  ALA
+  PIVO
+}
+
+enum status_partida {
+  A // agendado
+  F // finalizado
+}
+
+enum status_suspensao {
+  P // pendente
+  S // suspenso
+  C // completo
+}
+
+enum vencedor_partida {
+  C // casa
+  V // visitante
+  E // empate
+}

@@ -1,53 +1,54 @@
+import React from 'react';
+import '@/app/styles.css';
 
-import React from "react";
-import "@/app/styles.css"
-
-export function Gols() {
+export function Gols({ dados }: any) {
     return (
-        <div className='flex items-center justify-center m-1'>
-        <table className='text-[8px] text-center flex justify-center timeum'>
-          <tbody>
-            <tr>
-              <td rowSpan={6} className='-rotate-90 font-extrabold border-none text-xs'>
-                GOLS
-              </td>
-              {Array.from({ length: 14 }, (_, index) => (
-                <React.Fragment key={index}>
-                  <td>{index * 1 + 1}</td>
-                  <td>&nbsp;</td>
-                </React.Fragment>
-              ))}
-            </tr>
-            <tr>
-              {Array.from({ length: 14 }, (_, index) => (
-                <React.Fragment key={index}>
-                  <td>Ass.</td>
-                  <td>&nbsp;</td>
-                </React.Fragment>
-              ))}
-            </tr>
-            <tr>
-              {Array.from({ length: 14 }, (_, index) => (
-                <React.Fragment key={index}>
-                  <td>{index * 1 + 15}</td>
-                  <td></td>
-                </React.Fragment>
-              ))}
-            </tr>
-            <tr>
-              {Array.from({ length: 14 }, (_, index) => (
-                <React.Fragment key={index}>
-                  <td className=''>Ass.</td>
-                  <td className='w-6'></td>
-                </React.Fragment>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div className="m-1 flex items-center justify-center ">
+            <table className="flex w-4/5 justify-center text-center text-[8px]">
+                <tbody>
+                    <tr>
+                        <td
+                            rowSpan={6}
+                            className="-rotate-90 border-none text-xs font-extrabold"
+                        >
+                            GOLS
+                        </td>
+                        {Array.from({ length: 14 }, (_, index) => (
+                            <React.Fragment key={index}>
+                                <td>{index * 1 + 1}</td>
+                                <td>&nbsp;</td>
+                            </React.Fragment>
+                        ))}
+                    </tr>
+                    <tr>
+                        {Array.from({ length: 14 }, (_, index) => (
+                            <React.Fragment key={index}>
+                                <td>Ass.</td>
+                                <td>&nbsp;</td>
+                            </React.Fragment>
+                        ))}
+                    </tr>
+                    <tr>
+                        {Array.from({ length: 14 }, (_, index) => (
+                            <React.Fragment key={index}>
+                                <td>{index * 1 + 15}</td>
+                                <td></td>
+                            </React.Fragment>
+                        ))}
+                    </tr>
+                    <tr>
+                        {Array.from({ length: 14 }, (_, index) => (
+                            <React.Fragment key={index}>
+                                <td className="">Ass.</td>
+                                <td className="w-6"></td>
+                            </React.Fragment>
+                        ))}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     );
-  }
-
+}
 
 // export default function Gols(){
 //     return(
@@ -55,7 +56,7 @@ export function Gols() {
 //             <table className='text-[8px] text-center flex justify-center  timeum '>
 //                 <tbody>
 //                     <tr>
-                        
+
 //                         <td rowSpan={6} className='-rotate-90 font-extrabold border-none text-xs '>
 //                             GOLS
 //                         </td>

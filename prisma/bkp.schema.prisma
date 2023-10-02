@@ -1,0 +1,259 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  external_id   String        @unique @default(cuid()) @db.VarChar(30)
+  name          String?       @db.VarChar(50)
+  username      String?       @db.VarChar(50)
+  password      String
+  email         String?       @unique @db.VarChar(60)
+  emailVerified DateTime?
+  image         String?       @db.VarChar(50)
+  // accounts      Account[]
+  // sessions      Session[]
+  campeonatos   Campeonatos[]
+
+  role      RoleUser    @default(user)
+  moderador Moderador[]
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Moderador {
+  id Int @id @default(autoincrement())
+
+  // Relacionamento com o campeonato que é moderador
+  campeonato    Campeonatos @relation(fields: [campeonato_id], references: [id])
+  campeonato_id Int
+
+  // Relacionamento com o usuário moderador
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Campeonatos {
+  id            Int          @id @default(autoincrement())
+  external_id   String       @unique @default(cuid()) @db.VarChar(30)
+  nome          String       @db.VarChar(60)
+  modalidade    Modalidade
+  data_inicio   DateTime     @db.Date()
+  tem_categoria Boolean      @default(false)
+  categorias    Campeonatos_Categorias[]
+
+  // Relacionamento com o usuário proprietário do campeonato
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  // Relacionamento com os moderadores do campeonato
+  // moderadores User[]      @relation("Moderadores")
+  moderadores Moderador[]
+  times       Campeonatos_Times[]
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Campeonatos_Times {
+  time_id         Int
+  time            Times         @relation(fields: [time_id], references: [id])
+
+  campeonato      Campeonatos   @relation(fields: [campeonato_id], references: [id])
+  campeonato_id   Int  
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+
+  @@id([campeonato_id, time_id])
+}
+
+model Campeonatos_Categorias {
+  id              Int            @id @default(autoincrement())
+  nome            String?        @db.VarChar(30)
+  campeonato      Campeonatos    @relation(fields: [campeonato_id], references: [id])
+  campeonato_id   Int
+  genero          Genero
+  mata_mata       MataMata?
+  qtd_times       Int
+  qtd_grupos      Int?
+  tipo_campeonato TipoCampeonato
+  fases           Fases[]
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Fases {
+  id                 Int        @id @default(autoincrement())
+  nome               String?    @db.VarChar(30)
+  categoria          Campeonatos_Categorias @relation(fields: [categoria_id], references: [id])
+  categoria_id       Int
+  is_classificatoria SimOuNao   @default(N)
+  is_mata_mata       SimOuNao   @default(N)
+  is_grupo           SimOuNao   @default(N)
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+enum RoleUser {
+  admin
+  user
+}
+
+enum SimOuNao {
+  S
+  N
+}
+
+enum Modalidade {
+  FB
+  FS
+}
+
+enum Genero {
+  M
+  F
+  X
+}
+
+enum MataMata {
+  oitavas
+  quartas
+  semi
+  final
+}
+
+enum TipoCampeonato {
+  PM
+  GM
+  PC
+  MM
+}
+
+// ##### Times 
+
+model Responsavel {
+  id          Int     @id @default(autoincrement())
+  external_id String  @unique @default(cuid()) @db.VarChar(30)
+  nome        String? @db.VarChar(60)
+  email       String  @unique @db.VarChar(60)
+  celular     String? @db.VarChar(15)
+  password    String?
+  times       Times[] @relation("ResponsavelTime")
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Times {
+  id             Int                @id @default(autoincrement())
+  external_id    String             @unique @default(cuid()) @db.VarChar(30)
+  nome           String             @db.VarChar(50)
+  escudo         String?            @db.VarChar(40)
+  responsavel    Responsavel?       @relation("ResponsavelTime", fields: [responsavel_id], references: [id])
+  responsavel_id Int?
+  categorias     Times_Categorias[] @relation("TimesCategorias")
+  atletas        Atletas[]          @relation("TimesAtletas")
+  times          Campeonatos_Times[]
+
+  created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at DateTime @updatedAt @db.DateTime()
+}
+
+model Times_Categorias {
+  id      Int       @id @default(autoincrement())
+  nome    String    @db.VarChar(30)
+  time    Times     @relation("TimesCategorias", fields: [time_id], references: [id])
+  time_id Int
+  atletas Atletas_Times_Categorias[]
+
+  created_at              DateTime                  @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at              DateTime                  @updatedAt @db.DateTime()
+}
+
+model Atletas {
+  id          Int                @id @default(autoincrement())
+  external_id String             @unique @default(cuid()) @db.VarChar(30)
+  nome        String             @db.VarChar(60)
+  foto        String?            @db.VarChar(40)
+  rg          String?            @db.VarChar(11)
+  time        Times?             @relation("TimesAtletas", fields: [time_id], references: [id])
+  time_id     Int?
+  categorias  Atletas_Times_Categorias[]
+  // categorias  Times_Categorias[] @relation("categoriasAtletas")
+
+  created_at              DateTime                  @default(dbgenerated("CURRENT_TIMESTAMP")) @db.DateTime()
+  updated_at              DateTime                  @updatedAt @db.DateTime()
+  // Atletas_TimesCategorias Atletas_Times_Categorias[] @relation("atletasCategorias")
+}
+
+model Atletas_Times_Categorias {
+  id           Int              @id @default(autoincrement())
+  atleta       Atletas          @relation(fields: [atleta_id], references: [id])
+  atleta_id    Int
+  categoria    Times_Categorias @relation(fields: [categoria_id], references: [id])
+  categoria_id Int
+
+  @@unique([atleta_id, categoria_id])
+}
+
+// model Atleta_Times{
+//   id Int @id @default(autoincrement())
+
+//   // Relacionamento com o Time
+//   campeonato    Time_Categorias @relation(fields: [time_id], references: [id])
+//   time_id Int  
+// }
+
+// model Account {
+//   id                 String  @id @default(cuid())
+//   userId             Int
+//   type               String
+//   provider           String
+//   providerAccountId  String
+//   refresh_token      String?  @db.Text
+//   access_token       String?  @db.Text
+//   expires_at         Int?
+//   token_type         String?
+//   scope              String?
+//   id_token           String?  @db.Text
+//   session_state      String?
+
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+//   @@index([userId])
+// }
+
+// model Session {
+//   // id           String   @id @default(cuid())
+//   id           Int      @id @default(autoincrement())
+//   sessionToken String   @unique
+//   userId       Int
+//   expires      DateTime
+//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@index([userId])
+// }
+
+// model VerificationToken {
+//   identifier String
+//   token      String   @unique
+//   expires    DateTime
+
+//   @@unique([identifier, token])
+// }

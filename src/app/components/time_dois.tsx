@@ -1,190 +1,92 @@
-
-import "@/app/styles.css"
-export function TimeDois(){
-    
-    const equipes={
-        "time1": {
-            "nome": "Time Vasco FC",
-            "escudo": "caminho/do/escudo.png",
-            "tecnico": "José da Silva",
-            "capitao": "Jogador 10",
-            "jogadores": [
-                {
-                    "nome": "Jogador 1",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 2",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 3",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 4",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 5",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 6",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 7",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 8",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 9",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 10",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 11",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 12",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 13",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 14",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 15",
-                    "registro": "123456789"
-                },
-
-
-            ]
-        },
-        "time2": {
-            "nome": "Time Flamengo FC",
-            "escudo": "caminho/do/escudo.png",
-            "tecnico": "João Carlos",
-            "capitao": "Jogador 10",
-            "jogadores": [
-                {
-                    "nome": "Jogador 1",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 2",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 3",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 4",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 5",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 6",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 7",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 8",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 9",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 10",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 11",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 12",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 13",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 14",
-                    "registro": "123456789"
-                },
-                {
-                    "nome": "Jogador 15",
-                    "registro": "123456789"
-                },
-
-            ]
+import '@/app/styles.css';
+export function TimeDois({ dados }: any) {
+    const atletas = dados?.sumula?.timeVisitante?.atletas || []; // Certifique-se de que atletas seja um array
+    const atletasOrdenados = atletas.slice().sort((a: any, b: any) => {
+        // Compare com base no status de suspensão ('S' vem por último)
+        if (a.suspensao.some((suspensao: any) => suspensao.status === 'S')) {
+            return 1; // 'a' é suspenso, coloque 'a' por último
+        } else if (
+            b.suspensao.some((suspensao: any) => suspensao.status === 'S')
+        ) {
+            return -1; // 'b' é suspenso, coloque 'b' por último
+        } else {
+            return 0; // Ambos não são suspensos, mantenha a ordem original
         }
-    }
-    
-    return(
+    });
+    return (
         <main>
-            <div className='flex justify-center  '>
-                <table className=' text-[8px] w-1/2 m-1 border border-black'>
+            <div className="flex justify-center  ">
+                <table className=" m-1 w-1/2 border border-black text-[10px]">
                     <thead>
-                        <tr >
-                            <td className='font-bold uppercase '>TIME: {equipes.time2.nome}</td>
-                            <td className='font-bold uppercase '>TÉCNICO: {equipes.time2.tecnico}</td>
-                            <td className='font-bold uppercase '>CAPITAO: {equipes.time2.capitao}</td>
+                        <tr>
+                            <td className="font-bold uppercase ">
+                                TIME: {dados?.sumula?.timeVisitante?.nome}
+                            </td>
+                            <td className="font-bold uppercase ">CAPITAO:</td>
                         </tr>
                     </thead>
                 </table>
             </div>
-            <div className=' flex justify-center' >
-                <table className='timeum border-r-0 w-full text-[8px]'>
-                    <thead className='bg-gray-300 '>
+            <div className=" flex justify-center">
+                <table className="timeum w-full border-r-0 text-[10px]">
+                    <thead className="bg-gray-300 ">
                         <tr>
-                            <th className='w-1/6  '>REGISTRO</th>
-                            <th className='w-6/12'>JOGADORES</th>
+                            <th className="w-1/6  ">REGISTRO</th>
+                            <th className="w-6/12">JOGADORES</th>
                             <th>Nº</th>
                             <th>I</th>
-                            <th >C AMAR.</th>
-                            <th >C VERM.</th>
+                            <th>C AMAR.</th>
+                            <th>C VERM.</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {equipes.time2.jogadores.map((jogador, index) => (
-                            <tr key={index}>
-                                <td className='text-center'>{jogador.registro}</td>
-                                <td>{jogador.nome}</td>
-                                <td className='w-10'></td>
-                                <td className='w-10'></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        ))}
+                        {atletasOrdenados.map((atleta: any, index: any) => {
+                            const isSuspenso = atleta.suspensao.some(
+                                (suspensao: any) => suspensao.status === 'S',
+                            );
+                            // const nomeJogador = isSuspenso
+                            //     ? `${atleta.nome} (suspenso)`
+                            //     : atleta.nome;
+
+                            return (
+                                <tr key={index}>
+                                    <td
+                                        className={`${
+                                            isSuspenso
+                                                ? 'text-center italic opacity-60'
+                                                : ''
+                                        } text-center`}
+                                    >
+                                        {atleta.rg}
+                                    </td>
+                                    <td
+                                        className={`${
+                                            isSuspenso
+                                                ? 'italic opacity-60'
+                                                : ''
+                                        } `}
+                                    >
+                                        {isSuspenso
+                                            ? `${atleta.nome} (suspenso)`
+                                            : atleta.nome}
+                                    </td>
+                                    <td className="w-10"></td>
+                                    <td className="w-10"></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            );
+                        })}
                         <tr>
                             <td></td>
-                            <td colSpan={1}>TÉCNICO:</td>
-                            <td colSpan={4}>AUXILIR 1:</td>
-        
+                            <td colSpan={1}>
+                                TÉCNICO:{' '}
+                                {
+                                    dados?.sumula?.timeVisitante?.responsavel
+                                        ?.nome
+                                }
+                            </td>
+                            <td colSpan={4}>AUXILIAR 1:</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -193,14 +95,16 @@ export function TimeDois(){
                         </tr>
                     </tbody>
                 </table>
-                <div className='border border-black border-t-0 border-l-0 flex flex-col ' >
-                    <table className='text-[8px] '  >
-                        <thead >
+                <div className="flex flex-col border border-l-0 border-t-0 border-black ">
+                    <table className="text-[10px] ">
+                        <thead>
                             <tr>
-                                <th colSpan={6}  className='bg-gray-300 '>ACUMULADAS</th>
+                                <th colSpan={6} className="bg-gray-300 ">
+                                    ACUMULADAS
+                                </th>
                             </tr>
                         </thead>
-                        <tbody className='text-center' >
+                        <tbody className="text-center">
                             <tr>
                                 <td>1</td>
                                 <td>2</td>
@@ -218,7 +122,9 @@ export function TimeDois(){
                                 <td>6</td>
                             </tr>
                             <tr>
-                                <td colSpan={6} className='bg-gray-300' >PEDIDOS DE TEMPO</td>
+                                <td colSpan={6} className="bg-gray-300">
+                                    PEDIDOS DE TEMPO
+                                </td>
                             </tr>
                             <tr>
                                 <td colSpan={3}>1º PER.</td>
@@ -230,16 +136,16 @@ export function TimeDois(){
                             </tr>
                         </tbody>
                     </table>
-                    <div className="h-full flex items-center justify-center">
-                        <table className="text-[9px] -rotate-90 flex flex-col justify-center items-center border-none">
+                    <div className="flex h-full items-center justify-center">
+                        <table className="flex -rotate-90 flex-col items-center justify-center border-none text-[9px]">
                             <thead>
                                 <tr className="">
-                                    <td className="whitespace-nowrap pb-6 border-none ">
+                                    <td className="whitespace-nowrap border-none pb-6 text-[4px] ">
                                         ASSINATURA DO TÉCNICO
                                     </td>
                                 </tr>
                                 <tr className="">
-                                    <td className="whitespace-nowrap pb-5 h-full w-full border-none ">
+                                    <td className="h-full w-full whitespace-nowrap border-none pb-5 text-[4px] ">
                                         ASSINATURA DO CAPITÃO
                                     </td>
                                 </tr>
@@ -249,5 +155,5 @@ export function TimeDois(){
                 </div>
             </div>
         </main>
-    )
+    );
 }
