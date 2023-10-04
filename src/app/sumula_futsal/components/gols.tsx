@@ -3,17 +3,17 @@ import '@/app/styles.css';
 
 export function Gols({ dados }: any) {
     return (
-        <div className="m-1 flex items-center justify-center ">
-            <table className="flex w-4/5 justify-center text-center text-[8px]">
-                <tbody>
-                    <tr>
+        <div className=" flex  items-center justify-center ">
+            <table className="flex justify-center text-center">
+                <tbody className="">
+                    <tr className="">
                         <td
                             rowSpan={6}
                             className="-rotate-90 border-none text-xs font-extrabold"
                         >
                             GOLS
                         </td>
-                        {Array.from({ length: 14 }, (_, index) => (
+                        {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
                                 <td>{index * 1 + 1}</td>
                                 <td>&nbsp;</td>
@@ -21,15 +21,15 @@ export function Gols({ dados }: any) {
                         ))}
                     </tr>
                     <tr>
-                        {Array.from({ length: 14 }, (_, index) => (
+                        {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
                                 <td>Ass.</td>
-                                <td>&nbsp;</td>
+                                <td className="w-7">&nbsp;</td>
                             </React.Fragment>
                         ))}
                     </tr>
-                    <tr>
-                        {Array.from({ length: 14 }, (_, index) => (
+                    {/* <tr>
+                        {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
                                 <td>{index * 1 + 15}</td>
                                 <td></td>
@@ -37,13 +37,13 @@ export function Gols({ dados }: any) {
                         ))}
                     </tr>
                     <tr>
-                        {Array.from({ length: 14 }, (_, index) => (
+                        {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
                                 <td className="">Ass.</td>
                                 <td className="w-6"></td>
                             </React.Fragment>
                         ))}
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
         </div>

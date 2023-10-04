@@ -20,6 +20,7 @@ export async function GET(request: NextRequest, { params }: any) {
                 gols_casa: true,
                 gols_visitante: true,
                 vencedor: true,
+                campeonato: true,
                 timeCasa: {
                     select: {
                         nome: true,
@@ -30,14 +31,18 @@ export async function GET(request: NextRequest, { params }: any) {
                                 nome: true,
                             },
                         },
-                        atletas: {
+                        campeonatos_atletas: {
                             select: {
-                                nome: true,
-                                rg: true,
-                                data_nascimento: true,
-                                suspensao: {
+                                atleta: {
                                     select: {
-                                        status: true,
+                                        nome: true,
+                                        rg: true,
+                                        id: true,
+                                        suspensao: {
+                                            select: {
+                                                status: true,
+                                            },
+                                        },
                                     },
                                 },
                             },
@@ -54,14 +59,18 @@ export async function GET(request: NextRequest, { params }: any) {
                                 nome: true,
                             },
                         },
-                        atletas: {
+                        campeonatos_atletas: {
                             select: {
-                                nome: true,
-                                rg: true,
-                                data_nascimento: true,
-                                suspensao: {
+                                atleta: {
                                     select: {
-                                        status: true,
+                                        nome: true,
+                                        rg: true,
+                                        id: true,
+                                        suspensao: {
+                                            select: {
+                                                status: true,
+                                            },
+                                        },
                                     },
                                 },
                             },
@@ -70,6 +79,7 @@ export async function GET(request: NextRequest, { params }: any) {
                 },
             },
         });
+        console.log('sumula nova', sumula);
         // const suspensos = await prisma.campeonatos_suspensao.findMany({
         //     where: {
         //         status: 'S',

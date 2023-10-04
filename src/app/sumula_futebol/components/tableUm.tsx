@@ -9,9 +9,14 @@ export function TableUm({ dados }: any) {
                   year: '2-digit',
                   month: '2-digit',
                   day: '2-digit',
-              }) +
-              ' ' +
-              dataHora.toLocaleTimeString('pt-BR', {
+              })
+            : '';
+        return dt;
+    };
+    const formataHora = (data: Date | null) => {
+        const dataHora = data ? new Date(data) : null;
+        const dt = dataHora
+            ? dataHora.toLocaleTimeString('pt-BR', {
                   hour: '2-digit',
                   minute: '2-digit',
               })
@@ -20,9 +25,9 @@ export function TableUm({ dados }: any) {
     };
     return (
         <div className="flex justify-center ">
-            <table className="tabela-um  w-full text-center text-[10px]">
-                <thead className="text-[10px] ">
-                    <tr>
+            <table className="tabela-um  w-full text-center ">
+                <thead className="">
+                    <tr className="">
                         <th rowSpan={4}>DATA</th>
                         <th>HORÁRIO</th>
                         <th className="sm:w-10">INÍCIO</th>
@@ -37,6 +42,9 @@ export function TableUm({ dados }: any) {
                     <tr>
                         <td rowSpan={4} className="w-1/6 text-[16px]">
                             {formataData(dados?.sumula?.data_hora)}
+                            <div className=" text-[12px]">
+                                {formataHora(dados?.sumula?.data_hora)}
+                            </div>
 
                             <div className="text-[10px]">
                                 {dados?.sumula?.local}
@@ -60,7 +68,7 @@ export function TableUm({ dados }: any) {
                         <td className="text-center">X</td>
                         <td></td>
                         <td className="text-start">
-                            ENTROU EM: _____/_____/_____
+                            ENTROU EM: ______/______/______
                         </td>
                     </tr>
                     <tr>
