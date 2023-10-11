@@ -1,9 +1,8 @@
 'use client';
 import '@/app/styles.css';
+import SumulaFutebol from '@/app/sumula_futebol/sumula-futebol';
+import SumulaFutsal from '@/app/sumula_futsal/sumula-futsal';
 import React, { useEffect, useState } from 'react';
-import SumulaFutsal from './sumula_futsal/sumula-futsal';
-import SumulaFutebol from './sumula_futebol/sumula-futebol';
-import PartidaAngulo from './partida/partida-angulo';
 
 interface Equipes {
     sumula: any;
@@ -27,15 +26,14 @@ export default function Home() {
     }, []);
     return (
         <main>
-            <PartidaAngulo dados={dados} />
-            {/* <div>
+            <div>
                 <h1>{dados?.sumula?.campeonato?.modalidade}</h1>
             </div>
             {dados?.sumula?.campeonato?.modalidade === 'FB' ? (
                 <SumulaFutebol dados={dados} />
             ) : dados?.sumula?.campeonato?.modalidade === 'FS' ? (
                 <SumulaFutsal dados={dados} />
-            ) : null} */}
+            ) : null}
         </main>
     );
 }

@@ -24,7 +24,7 @@ export function TimeDois({ dados }: any) {
     return (
         <main>
             <div className="flex justify-center  ">
-                <table className=" m-[1px] w-full border border-black text-[10px]">
+                <table className=" sumula-futsal m-[1px] w-full text-[10px]">
                     <thead>
                         <tr>
                             <td className="font-bold uppercase ">
@@ -45,14 +45,14 @@ export function TimeDois({ dados }: any) {
                 </table>
             </div>
             <div className=" flex justify-center">
-                <table className="timeum w-full border-r-0 text-[10px]">
+                <table className="timeum sumula-futsal w-full border-r-0 text-[10px]">
                     <thead className="bg-zinc-200 ">
                         <tr>
                             <th className="w-1/6  ">REGISTRO</th>
                             <th className="w-6/12">JOGADORES</th>
                             <th>Nº</th>
                             <th>I</th>
-                            <th>C AMAR.</th>
+                            <th className="">C AMAR.</th>
                             <th>C VERM.</th>
                         </tr>
                     </thead>
@@ -97,7 +97,7 @@ export function TimeDois({ dados }: any) {
                     </tbody>
                 </table>
                 <div className="flex flex-col border border-l-0 border-t-0 border-black ">
-                    <table className="text-[10px] ">
+                    <table className="sumula-futsal text-[10px] ">
                         <thead>
                             <tr>
                                 <th colSpan={6} className="bg-zinc-200 ">
@@ -139,7 +139,7 @@ export function TimeDois({ dados }: any) {
                     </table>
                     <Gols />
                     <div className="flex h-full items-center justify-center">
-                        <table className="flex -rotate-90 flex-col items-center justify-center border-none text-[9px]">
+                        <table className=" flex -rotate-90 flex-col items-center justify-center border-none text-[9px]">
                             <thead className="flex flex-col gap-10">
                                 <tr className="">
                                     <td className="whitespace-nowrap border-none  text-[6px] ">

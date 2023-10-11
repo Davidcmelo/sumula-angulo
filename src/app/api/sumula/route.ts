@@ -6,7 +6,7 @@ export async function GET(request: NextRequest, { params }: any) {
     try {
         const sumula = await prisma.campeonatos_jogos.findUnique({
             where: {
-                id: 29,
+                id: 33,
             },
             select: {
                 id: true,
@@ -20,7 +20,19 @@ export async function GET(request: NextRequest, { params }: any) {
                 gols_casa: true,
                 gols_visitante: true,
                 vencedor: true,
-                campeonato: true,
+                campeonato: {
+                    select: {
+                        id: true,
+                        nome: true,
+                        categorias: true,
+                        modalidade: true,
+                    },
+                },
+                rodada: {
+                    select: {
+                        numero: true,
+                    },
+                },
                 timeCasa: {
                     select: {
                         nome: true,
@@ -31,6 +43,7 @@ export async function GET(request: NextRequest, { params }: any) {
                                 nome: true,
                             },
                         },
+
                         campeonatos_atletas: {
                             select: {
                                 atleta: {
@@ -38,9 +51,22 @@ export async function GET(request: NextRequest, { params }: any) {
                                         nome: true,
                                         rg: true,
                                         id: true,
+                                        posicao: true,
                                         suspensao: {
                                             select: {
                                                 status: true,
+                                            },
+                                        },
+                                        estatisticas: {
+                                            select: {
+                                                id: true,
+                                                jogo_id: true,
+                                                gols_pro: true,
+                                                gols_contra: true,
+                                                assistencia: true,
+                                                amarelo: true,
+                                                vermelho: true,
+                                                suspenso: true,
                                             },
                                         },
                                     },
@@ -59,6 +85,7 @@ export async function GET(request: NextRequest, { params }: any) {
                                 nome: true,
                             },
                         },
+
                         campeonatos_atletas: {
                             select: {
                                 atleta: {
@@ -66,9 +93,22 @@ export async function GET(request: NextRequest, { params }: any) {
                                         nome: true,
                                         rg: true,
                                         id: true,
+                                        posicao: true,
                                         suspensao: {
                                             select: {
                                                 status: true,
+                                            },
+                                        },
+                                        estatisticas: {
+                                            select: {
+                                                id: true,
+                                                jogo_id: true,
+                                                gols_pro: true,
+                                                gols_contra: true,
+                                                assistencia: true,
+                                                amarelo: true,
+                                                vermelho: true,
+                                                suspenso: true,
                                             },
                                         },
                                     },

@@ -19,16 +19,17 @@
 
 /* primeira tabela*/
 
-/* .timeum td{
+.timeum td{
   border:1px solid black;
-} */
+} 
 
 table {
   border-collapse: collapse;
 }
 
-td, th {
-  border: 1px solid #000;
+.sumula-futsal td,
+.sumula-futsal th{
+  border: 1px solid black;
   font-size: 5px;
   font-weight: bold;
   padding-bottom: 7px;
@@ -37,6 +38,40 @@ td, th {
   border-collapse: collapse
 }
 
+
 input{
   text-transform: uppercase;
+}
+
+
+
+.quadra {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  
+}
+
+.modalidade-fs {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.850), rgba(0, 0, 0, 0.850)), url(/imagens/futsal.jpg);
+}
+
+.modalidade-fb {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.850), rgba(0, 0, 0, 0.850)), url(/imagens/futebol.jpg);
+}
+
+.table td{
+  border-bottom: 2px solid rgb(195, 195, 195);
+ 
+}
+
+.table th{
+  border-bottom: 2px solid rgb(195, 195, 195);
+  
+  
+}
+
+.bg{
+
+  background-image: linear-gradient(to top left, rgba(8, 75, 156, 0.872), rgb(0, 18, 39));
 }

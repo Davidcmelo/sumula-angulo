@@ -3,27 +3,29 @@ import '@/app/styles.css';
 
 export function Gols({ dados }: any) {
     return (
-        <div className=" flex  items-center justify-center ">
-            <table className="flex justify-center text-center">
-                <tbody className="">
-                    <tr className="">
+        <div className=" sumula-futsal flex items-center justify-center  ">
+            <table className="sumula-futsal flex justify-center border text-center">
+                <tbody className="sumula-futsal">
+                    <tr className=" sumula-futsal">
                         <td
                             rowSpan={6}
-                            className="-rotate-90 border-none text-xs font-extrabold"
+                            className=" sumula-futsal text-xs font-extrabold"
                         >
                             GOLS
                         </td>
                         {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
-                                <td>{index * 1 + 1}</td>
-                                <td>&nbsp;</td>
+                                <td className="border border-black">
+                                    {index * 1 + 1}
+                                </td>
+                                <td className="border border-black">&nbsp;</td>
                             </React.Fragment>
                         ))}
                     </tr>
                     <tr>
                         {Array.from({ length: 20 }, (_, index) => (
                             <React.Fragment key={index}>
-                                <td>Ass.</td>
+                                <td className="border border-black">Ass.</td>
                                 <td className="w-7">&nbsp;</td>
                             </React.Fragment>
                         ))}
@@ -49,51 +51,3 @@ export function Gols({ dados }: any) {
         </div>
     );
 }
-
-// export default function Gols(){
-//     return(
-//         <div className=' flex items-center justify-center m-1'>
-//             <table className='text-[8px] text-center flex justify-center  timeum '>
-//                 <tbody>
-//                     <tr>
-
-//                         <td rowSpan={6} className='-rotate-90 font-extrabold border-none text-xs '>
-//                             GOLS
-//                         </td>
-//                         {Array.from({ length: 14 }, (_, index) => (
-//                             <>
-//                                 <td >{index * 1 + 1}</td>
-//                                 <td >&nbsp;</td>
-//                             </>
-//                         ))}
-//                     </tr>
-//                     <tr>
-//                         {Array.from({ length: 14 }, (_, index) => (
-//                             <>
-//                                 <td>Ass.</td>
-//                                 <td >&nbsp;</td>
-//                             </>
-//                         ))}
-//                     </tr>
-
-//                     <tr>
-//                         {Array.from({ length: 14 }, (_, index) => (
-//                             <>
-//                                 <td >{(index * 1) + 15}</td>
-//                                 <td></td>
-//                             </>
-//                         ))}
-//                     </tr>
-//                     <tr>
-//                         {Array.from({ length: 14 }, (_, index) => (
-//                             <>
-//                                 <td className=''>Ass.</td>
-//                                 <td className='w-6' ></td>
-//                             </>
-//                         ))}
-//                     </tr>
-//                 </tbody>
-//             </table>
-//         </div>
-//     )
-// }

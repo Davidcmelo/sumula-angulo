@@ -1,14 +1,17 @@
 import React from 'react';
 import '@/app/styles.css';
+import { Typography } from '@mui/material';
 
-export function Gols() {
+export function Gols({ dados }: any) {
     return (
         <div className=" flex  items-center justify-center ">
-            <table className=" justify-center text-center">
+            <table className=" sumula-futsal justify-center text-center">
                 <thead>
                     <tr className=" bg-zinc-200">
                         <th colSpan={11} className="text-[10px]">
-                            GOLS
+                            <Typography className="text-[10px] font-bold">
+                                GOLS
+                            </Typography>
                         </th>
                     </tr>
                 </thead>

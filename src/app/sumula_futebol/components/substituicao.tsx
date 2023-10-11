@@ -1,19 +1,26 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 
 export default function Substituicao() {
     return (
         <div>
-            <table className="border-1">
+            <table className="border-1 sumula-futsal">
                 <thead>
                     <tr className=" bg-zinc-200">
-                        <th colSpan={12} className="text-[10px]">
-                            substituição
+                        <th colSpan={12}>
+                            <Typography className="text-[8px] font-bold">
+                                substituição
+                            </Typography>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="text-[8px]">ENTRA</td>
+                        <td>
+                            <Typography className="text-[6px] font-bold">
+                                ENTRA
+                            </Typography>
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -27,7 +34,11 @@ export default function Substituicao() {
                         <td></td>
                     </tr>
                     <tr>
-                        <td className="text-[8px]">SAI</td>
+                        <td>
+                            <Typography className="text-[6px] font-bold">
+                                SAI
+                            </Typography>
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -41,7 +52,11 @@ export default function Substituicao() {
                         <td></td>
                     </tr>
                     <tr>
-                        <td className="text-[8px]">PARADA</td>
+                        <td>
+                            <Typography className="text-[6px] font-bold">
+                                PARADA
+                            </Typography>
+                        </td>
                         <td className="w-6"></td>
                         <td className="w-6"></td>
                         <td className="w-6"></td>
@@ -57,7 +72,7 @@ export default function Substituicao() {
                 </tbody>
             </table>
 
-            <div className="  flex h-1/2 flex-col gap-10 ">
+            <div className="flex h-1/2 flex-col gap-10 border-t border-black ">
                 <div>
                     <h2 className="  text-center text-[6px] uppercase">
                         Assinatura do técnico

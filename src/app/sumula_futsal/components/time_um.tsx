@@ -26,9 +26,9 @@ export function TimeUm({ dados }: any) {
     console.log('atletas ordenados', atletasOrdenados);
 
     return (
-        <main>
+        <main className=" ">
             <div className="m-[1px] flex justify-center  border-b-0">
-                <table className=" timeum w-full text-[10px]">
+                <table className=" sumula-futsal w-full ">
                     <thead>
                         <tr>
                             <td className="font-bold uppercase ">
@@ -46,7 +46,7 @@ export function TimeUm({ dados }: any) {
                 </table>
             </div>
             <div className=" flex justify-center ">
-                <table className=" timeum w-full border-r-0 text-[10px]">
+                <table className="sumula-futsal w-full border-r-0 ">
                     <thead className="bg-zinc-200 ">
                         <tr>
                             <th className="w-1/6  ">REGISTRO</th>
@@ -98,7 +98,7 @@ export function TimeUm({ dados }: any) {
                     </tbody>
                 </table>
                 <div className="flex flex-col border border-l-0 border-t-0 border-black ">
-                    <table className="text-[8px]">
+                    <table className="sumula-futsal text-[8px]">
                         <thead>
                             <tr>
                                 <th colSpan={6} className="bg-zinc-200 ">
@@ -140,7 +140,7 @@ export function TimeUm({ dados }: any) {
                     </table>
                     <Gols />
                     <div className="flex h-full items-center justify-center">
-                        <table className="flex -rotate-90 flex-col items-center justify-center border-none text-[9px]">
+                        <table className=" flex -rotate-90 flex-col items-center justify-center border-none text-[9px]">
                             <tbody className=" flex flex-col gap-10">
                                 <tr className="">
                                     <td className="whitespace-nowrap border-none text-[6px]">

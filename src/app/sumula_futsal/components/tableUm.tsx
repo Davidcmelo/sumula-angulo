@@ -24,8 +24,8 @@ export function TableUm({ dados }: any) {
         return dt;
     };
     return (
-        <div className="flex justify-center ">
-            <table className="tabela-um  w-full text-center ">
+        <div className="flex justify-center text-[5px]">
+            <table className="tabela-um  text-centerborder sumula-futsal w-full ">
                 <thead className="">
                     <tr className="">
                         <th rowSpan={4}>DATA</th>
@@ -40,9 +40,14 @@ export function TableUm({ dados }: any) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowSpan={4} className="w-1/6 text-[16px]">
-                            {formataData(dados?.sumula?.data_hora)}
-                            <div className=" text-[12px]">
+                        <td
+                            rowSpan={4}
+                            className="w-1/6 text-center text-[16px]"
+                        >
+                            <div className=" text-center text-[16px]">
+                                {formataData(dados?.sumula?.data_hora)}
+                            </div>
+                            <div className=" text-center text-[12px]">
                                 {formataHora(dados?.sumula?.data_hora)}
                             </div>
 

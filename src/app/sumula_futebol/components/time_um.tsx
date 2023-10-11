@@ -246,7 +246,7 @@ export function TimeUm({ dados }: any) {
     return (
         <main>
             <div className="m-[1px] flex justify-center  border-b-0">
-                <table className=" timeum w-1/2 text-[10px]">
+                <table className=" sumula-futsal w-1/2 text-[10px]">
                     <thead>
                         <tr>
                             <td className="font-bold uppercase ">
@@ -265,7 +265,7 @@ export function TimeUm({ dados }: any) {
                 </table>
             </div>
             <div className=" flex justify-center ">
-                <table className=" timeum w-full border-r-0 text-[10px]">
+                <table className=" timeum sumula-futsal w-full border-r-0 text-[10px]">
                     <thead className="bg-zinc-200 ">
                         <tr>
                             <th className="w-1/6  ">REGISTRO</th>

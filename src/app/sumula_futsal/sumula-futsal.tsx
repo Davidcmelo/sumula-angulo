@@ -7,12 +7,18 @@ import { TableUm } from './components/tableUm';
 import { TimeUm } from './components/time_um';
 import { Gols } from './components/gols';
 import { TimeDois } from './components/time_dois';
+import { useRouter } from 'next/navigation';
 
 interface Equipes {
     sumula: any;
 }
 export default function SumulaFutsal({ dados }: any) {
     const ref = useRef(null);
+    const router = useRouter();
+
+    const handleDownload = () => {
+        router.push('/');
+    };
 
     const handleDownloadPDF = () => {
         const element = document.getElementById('pdf-content');
@@ -31,6 +37,7 @@ export default function SumulaFutsal({ dados }: any) {
         import('html2pdf.js').then((html2pdf) => {
             html2pdf.default(element, opt).from(element).set(opt).save();
         });
+        router.back();
     };
 
     // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {
