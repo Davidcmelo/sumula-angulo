@@ -52,49 +52,40 @@ export default function Estatisticas({ dados }: any) {
         return icones;
     };
 
-    const atletas = dados?.sumula?.timeCasa?.campeonatos_atletas || [];
-    console.log('dados atletas casa', dados);
-    const atletasVisitante =
+    const jogadores = dados?.sumula?.timeCasa?.campeonatos_atletas || [];
+    const jogadoresVisitantes =
         dados?.sumula?.timeVisitante?.campeonatos_atletas || [];
 
-    const atletasOrdenadosCasa = atletas.slice().sort((a: any, b: any) => {
-        // Compare com base no status de suspensão ('S' vem por último)
-        if (
-            a.atleta.suspensao?.some(
-                (suspensao: any) => suspensao.status === 'S',
-            )
-        ) {
-            return 1; // 'a' é suspenso, coloque 'a' por último
-        } else if (
-            b.atleta.suspensao?.some(
-                (suspensao: any) => suspensao.status === 'S',
-            )
-        ) {
-            return -1; // 'b' é suspenso, coloque 'b' por último
-        } else {
-            return 0; // Ambos não são suspensos, mantenha a ordem original
-        }
-    });
-    const atletasOrdenadosVisitantes = atletasVisitante
-        .slice()
-        .sort((a: any, b: any) => {
-            // Compare com base no status de suspensão ('S' vem por último)
-            if (
-                a.atleta.suspensao?.some(
-                    (suspensao: any) => suspensao.status === 'S',
-                )
-            ) {
-                return 1; // 'a' é suspenso, coloque 'a' por último
-            } else if (
-                b.atleta.suspensao?.some(
-                    (suspensao: any) => suspensao.status === 'S',
-                )
-            ) {
-                return -1; // 'b' é suspenso, coloque 'b' por último
-            } else {
-                return 0; // Ambos não são suspensos, mantenha a ordem original
-            }
-        });
+    // Dividir jogadores em "red" e "não red"
+    const jogadoresRed = jogadores.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso === 'S',
+    );
+    const jogadoresNaoRed = jogadores.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso !== 'S',
+    );
+    const jogadoresReds = jogadoresVisitantes.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso === 'S',
+    );
+    const jogadoresNaoReds = jogadoresVisitantes.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso !== 'S',
+    );
+
+    // Concatenar as duas listas com jogadores "não red" primeiro
+    const jogadoresOrganizados = jogadoresNaoRed.concat(jogadoresRed);
+    const jogadoresOrganizadosVisitantes =
+        jogadoresNaoReds.concat(jogadoresReds);
 
     return (
         <div className=" -mt-44 h-full">
@@ -125,7 +116,7 @@ export default function Estatisticas({ dados }: any) {
                             </tr>
                         </thead>
                         <tbody className="">
-                            {atletasOrdenadosCasa.map(
+                            {jogadoresOrganizados.map(
                                 (atleta: any, index: any) => (
                                     <tr
                                         key={index}
@@ -136,18 +127,12 @@ export default function Estatisticas({ dados }: any) {
                                         }
                                     >
                                         <td
-                                            className={`flex items-center gap-3 px-3 text-[10px] uppercase  md:text-[14px] ${
-                                                atleta?.atleta?.estatisticas
-                                                    ?.find(
-                                                        (est: any) =>
-                                                            est.jogo_id ===
-                                                            dados.sumula.id,
-                                                    )
-                                                    ?.suspensao?.every(
-                                                        (suspensao: any) =>
-                                                            suspensao.status ===
-                                                            'C',
-                                                    )
+                                            className={`flex items-center gap-3 px-3 text-[10px] uppercase md:text-[14px] ${
+                                                atleta?.atleta?.estatisticas?.find(
+                                                    (est: any) =>
+                                                        est.jogo_id ===
+                                                        dados.sumula.id,
+                                                )?.suspenso === 'S'
                                                     ? 'text-red-500'
                                                     : ''
                                             }`}
@@ -157,6 +142,15 @@ export default function Estatisticas({ dados }: any) {
                                                 {atleta.atleta.posicao}
                                             </span>
                                             {atleta.atleta.nome}
+                                            {atleta?.atleta?.estatisticas?.find(
+                                                (est: any) =>
+                                                    est.jogo_id ===
+                                                    dados.sumula.id,
+                                            )?.suspenso === 'S' && (
+                                                <span className=" text-red-500">
+                                                    (Suspenso)
+                                                </span>
+                                            )}
                                             {renderIconesEstatisticas(
                                                 atleta.atleta.estatisticas.find(
                                                     (est: any) =>
@@ -210,7 +204,7 @@ export default function Estatisticas({ dados }: any) {
                             </tr>
                         </thead>
                         <tbody className="">
-                            {atletasOrdenadosVisitantes.map(
+                            {jogadoresOrganizadosVisitantes.map(
                                 (atleta: any, index: any) => (
                                     <tr
                                         key={index}
@@ -220,11 +214,31 @@ export default function Estatisticas({ dados }: any) {
                                                 : 'bg-gray-100'
                                         }
                                     >
-                                        <td className="flex items-center gap-3 px-3 text-[10px] uppercase md:text-[14px] ">
-                                            <span className=" flex w-10 justify-center rounded-sm bg-[#1878E8] text-[12px] text-white">
+                                        <td
+                                            className={`flex items-center gap-3 px-3 text-[10px] uppercase md:text-[14px] ${
+                                                atleta?.atleta?.estatisticas?.find(
+                                                    (est: any) =>
+                                                        est.jogo_id ===
+                                                        dados.sumula.id,
+                                                )?.suspenso === 'S'
+                                                    ? 'text-red-500'
+                                                    : ''
+                                            }`}
+                                            colSpan={3}
+                                        >
+                                            <span className="flex w-10 justify-center rounded-sm bg-[#1878E8] p-0 text-[12px] text-white">
                                                 {atleta.atleta.posicao}
                                             </span>
                                             {atleta.atleta.nome}
+                                            {atleta?.atleta?.estatisticas?.find(
+                                                (est: any) =>
+                                                    est.jogo_id ===
+                                                    dados.sumula.id,
+                                            )?.suspenso === 'S' && (
+                                                <span className=" text-red-500">
+                                                    (Suspenso)
+                                                </span>
+                                            )}
                                             {renderIconesEstatisticas(
                                                 atleta.atleta.estatisticas.find(
                                                     (est: any) =>
@@ -242,10 +256,7 @@ export default function Estatisticas({ dados }: any) {
                                     colSpan={3}
                                     className="pl-3 text-[10px] md:text-[12px]"
                                 >
-                                    {
-                                        dados?.sumula?.timeVisitante
-                                            ?.responsavel?.nome
-                                    }
+                                    {dados?.sumula?.timeCasa?.responsavel?.nome}
                                 </td>
                             </tr>
                             <tr className=" text-gray-500">

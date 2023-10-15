@@ -2,25 +2,25 @@ import '@/app/styles.css';
 import { Gols } from './gols';
 import Substituicao from './substituicao';
 export function TimeDois({ dados }: any) {
-    const atletas = dados?.sumula?.timeVisitante?.campeonatos_atletas || []; // Certifique-se de que atletas seja um array
-    const atletasOrdenados = atletas.slice().sort((a: any, b: any) => {
-        // Compare com base no status de suspensão ('S' vem por último)
-        if (
-            a.atleta.suspensao?.some(
-                (suspensao: any) => suspensao.status === 'S',
-            )
-        ) {
-            return 1; // 'a' é suspenso, coloque 'a' por último
-        } else if (
-            b.atleta.suspensao?.some(
-                (suspensao: any) => suspensao.status === 'S',
-            )
-        ) {
-            return -1; // 'b' é suspenso, coloque 'b' por último
-        } else {
-            return 0; // Ambos não são suspensos, mantenha a ordem original
-        }
-    });
+    const jogadores = dados?.sumula?.timeVisitante?.campeonatos_atletas || [];
+
+    // Dividir jogadores em "red" e "não red"
+    const jogadoresRed = jogadores.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso === 'S',
+    );
+    const jogadoresNaoRed = jogadores.filter(
+        (atleta: any) =>
+            atleta?.atleta?.estatisticas?.find(
+                (est: any) => est.jogo_id === dados.sumula.id,
+            )?.suspenso !== 'S',
+    );
+
+    // Concatenar as duas listas com jogadores "não red" primeiro
+    const jogadoresOrganizados = jogadoresNaoRed.concat(jogadoresRed);
+
     const equipes = {
         time1: {
             nome: 'Time Vasco FC',
@@ -274,35 +274,40 @@ export function TimeDois({ dados }: any) {
                         </tr>
                     </thead>
                     <tbody className="">
-                        {atletasOrdenados.map((atleta: any, index: any) => {
-                            const isSuspenso = atleta?.atleta?.suspensao?.some(
-                                (suspensao: any) => suspensao.status === 'S',
-                            );
-                            // const nomeJogador = isSuspenso
-                            //     ? `${atleta.nome} (suspenso)`
-                            //     : atleta.nome;
+                        {jogadoresOrganizados.map((atleta: any, index: any) => {
+                            const isSuspenso =
+                                atleta?.atleta?.estatisticas?.find(
+                                    (est: any) =>
+                                        est.jogo_id === dados.sumula.id,
+                                )?.suspenso === 'S';
 
                             return (
                                 <tr key={index}>
                                     <td
-                                        className={`${
+                                        className={`flex items-center gap-3 px-3 text-[10px] uppercase md:text-[14px] ${
                                             isSuspenso
-                                                ? 'text-center italic opacity-60'
-                                                : ''
-                                        } text-center`}
-                                    >
-                                        {atleta.atleta.rg}
-                                    </td>
-                                    <td
-                                        className={`${
-                                            isSuspenso
-                                                ? 'italic opacity-60'
+                                                ? 'italic text-gray-400'
                                                 : ''
                                         }`}
                                     >
-                                        {isSuspenso
-                                            ? `${atleta.atleta.nome} (suspenso)`
-                                            : atleta.atleta.nome}
+                                        <span
+                                            className={
+                                                isSuspenso
+                                                    ? 'italic text-gray-400'
+                                                    : ''
+                                            }
+                                        >
+                                            {atleta.atleta.rg}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {isSuspenso ? (
+                                            <span className="italic text-gray-400">
+                                                {atleta.atleta.nome} (Suspenso)
+                                            </span>
+                                        ) : (
+                                            atleta.atleta.nome
+                                        )}
                                     </td>
                                     <td className="w-10"></td>
                                     <td className="w-10"></td>

@@ -19,6 +19,11 @@ export default function Home() {
                 const res = await fetch(`/api/sumula`);
                 const data = await res.json();
                 setDados(data);
+                console.log(
+                    'dados sumula suspensão',
+                    dados?.sumula?.timeCasa?.campeonatos_atletas?.atleta
+                        ?.estatisticas?.suspenso,
+                );
             } catch (error) {
                 console.error('Erro na requisição', error);
             }

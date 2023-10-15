@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prismadb';
@@ -55,7 +56,7 @@ export async function GET(request: NextRequest, { params }: any) {
                                         suspensao: {
                                             select: {
                                                 status: true,
-                                            },
+                                            }
                                         },
                                         estatisticas: {
                                             select: {
@@ -85,7 +86,6 @@ export async function GET(request: NextRequest, { params }: any) {
                                 nome: true,
                             },
                         },
-
                         campeonatos_atletas: {
                             select: {
                                 atleta: {
@@ -119,7 +119,9 @@ export async function GET(request: NextRequest, { params }: any) {
                 },
             },
         });
-        console.log('sumula nova', sumula);
+        
+console.log('SUMULA PRA SUSPENSAO', sumula)
+
         // const suspensos = await prisma.campeonatos_suspensao.findMany({
         //     where: {
         //         status: 'S',
