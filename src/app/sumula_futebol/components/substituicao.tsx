@@ -8,19 +8,15 @@ export default function Substituicao() {
                 <thead>
                     <tr className=" bg-zinc-200">
                         <th colSpan={12}>
-                            <Typography className="text-[8px] font-bold">
+                            <p className="text-[10px] font-bold">
                                 substituição
-                            </Typography>
+                            </p>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            <Typography className="text-[6px] font-bold">
-                                ENTRA
-                            </Typography>
-                        </td>
+                        <td className="text-sm font-bold">ENTRA</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -34,11 +30,7 @@ export default function Substituicao() {
                         <td></td>
                     </tr>
                     <tr>
-                        <td>
-                            <Typography className="text-[6px] font-bold">
-                                SAI
-                            </Typography>
-                        </td>
+                        <td className=" text-sm font-bold">SAI</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -52,11 +44,7 @@ export default function Substituicao() {
                         <td></td>
                     </tr>
                     <tr>
-                        <td>
-                            <Typography className="text-[6px] font-bold">
-                                PARADA
-                            </Typography>
-                        </td>
+                        <td className="text-sm font-bold">PARADA</td>
                         <td className="w-6"></td>
                         <td className="w-6"></td>
                         <td className="w-6"></td>

@@ -241,8 +241,8 @@ export function TimeUm({ dados }: any) {
 
     return (
         <main>
-            <div className="m-[1px] flex justify-center  border-b-0">
-                <table className=" sumula-futsal w-1/2 text-[10px]">
+            <div className="mt-[1px] flex justify-center  border-b-0">
+                <table className=" sumula-futsal w-1/2 ">
                     <thead>
                         <tr>
                             <td className="font-bold uppercase ">

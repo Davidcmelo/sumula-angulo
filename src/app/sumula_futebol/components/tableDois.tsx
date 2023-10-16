@@ -10,13 +10,10 @@ export function TableDois({ dados }: any) {
                         <td>ASSINATURA:</td>
                     </tr>
                     <tr>
-                        <td>ÁRBITRO ASSISTENTE 1:</td>
+                        <td>ÁRBITRO ASSISTENTE:</td>
                         <td>ASSINATURA:</td>
                     </tr>
-                    <tr>
-                        <td>ÁRBITRO ASSISTENTE 2:</td>
-                        <td>ASSINATURA:</td>
-                    </tr>
+
                     <tr>
                         <td>4 ÁRBITRO:</td>
                         <td>ASSINATURA:</td>

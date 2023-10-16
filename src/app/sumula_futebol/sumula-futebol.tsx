@@ -7,6 +7,7 @@ import { TableUm } from './components/tableUm';
 import { TimeUm } from './components/time_um';
 import { Gols } from './components/gols';
 import { TimeDois } from './components/time_dois';
+import router from 'next/router';
 
 interface Equipes {
     sumula: any;
@@ -15,6 +16,9 @@ export default function SumulaFutebol({ dados }: any) {
     console.log('futebol', dados);
     // const ref = useRef(null);
     const ref = useRef(null);
+    const handleBack = () => {
+        router.push('/');
+    };
     // const [dados, setDados] = useState<Equipes>();
     // console.log('dados da sumula', dados);
 
@@ -53,7 +57,7 @@ export default function SumulaFutebol({ dados }: any) {
             return;
         }
         const opt = {
-            margin: 0.2,
+            margin: 0.1,
             filename: 'sumula_angulo_futebol.pdf',
             image: { type: 'png', quality: 1 },
             html2canvas: { scale: 5, letterRendering: true },
@@ -83,7 +87,7 @@ export default function SumulaFutebol({ dados }: any) {
         <div className="flex flex-col items-center justify-center">
             <main className=" flex flex-col " id="pdf-content" ref={ref}>
                 <div className=" flex justify-center">
-                    <h1 className="font-semibold  uppercase sm:text-base">
+                    <h1 className="font-semibold  uppercase sm:text-sm">
                         {dados?.sumula?.campeonato?.nome}
                     </h1>
                 </div>
@@ -92,12 +96,12 @@ export default function SumulaFutebol({ dados }: any) {
                         <Image
                             src="/imagens/flamengo.png"
                             alt="flamengo  "
-                            width={50}
-                            height={50}
+                            width={30}
+                            height={30}
                         />
 
                         {/* <input type="text" className='border border-black text-center  ' value={equipes.time1.nome}   /> */}
-                        <div className="border border-black  pb-3  sm:w-44  ">
+                        <div className="border border-black  pb-2  sm:w-44  ">
                             <h4 className=" pl-2 pr-10  text-[6px] text-xs font-bold uppercase">
                                 {dados?.sumula?.timeCasa?.nome}
                             </h4>
@@ -110,12 +114,12 @@ export default function SumulaFutebol({ dados }: any) {
                     <div className="flex  items-center ">
                         <input
                             type="text"
-                            className="mt-6 h-6 w-6  rounded-full border border-black"
+                            className="mt-6 h-4 w-4  rounded-full border border-black"
                         />
                         <h2 className="items-center">X</h2>
                         <input
                             type="text"
-                            className="mt-6 h-6 w-6 rounded-full border border-black"
+                            className="mt-6 h-4 w-4 rounded-full border border-black"
                         />
                     </div>
                     <div className="flex items-center ">
@@ -124,7 +128,7 @@ export default function SumulaFutebol({ dados }: any) {
                             className="relative -mr-[10px] h-8 w-8 rounded-full border border-black"
                         />
                         {/* <input type="text" className='border border-black  text-center ' value={equipes.time2.nome}  /> */}
-                        <div className="w-44 border border-black pb-3 text-[6px] text-xs ">
+                        <div className="w-44 border border-black pb-2 text-[6px] text-xs ">
                             <h4 className="pl-10 pr-2 text-end font-bold uppercase">
                                 {dados?.sumula?.timeVisitante?.nome}
                             </h4>
@@ -132,8 +136,8 @@ export default function SumulaFutebol({ dados }: any) {
                         <Image
                             src="/imagens/vasco.png"
                             alt="vasco"
-                            width={50}
-                            height={50}
+                            width={30}
+                            height={30}
                         />
                     </div>
                 </header>

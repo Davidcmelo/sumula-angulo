@@ -26,9 +26,6 @@ export default function Home() {
     }, []);
     return (
         <main>
-            <div>
-                <h1>{dados?.sumula?.campeonato?.modalidade}</h1>
-            </div>
             {dados?.sumula?.campeonato?.modalidade === 'FB' ? (
                 <SumulaFutebol dados={dados} />
             ) : dados?.sumula?.campeonato?.modalidade === 'FS' ? (

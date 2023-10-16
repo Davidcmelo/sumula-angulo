@@ -8,10 +8,8 @@ export function Gols({ dados }: any) {
             <table className=" sumula-futsal justify-center text-center">
                 <thead>
                     <tr className=" bg-zinc-200">
-                        <th colSpan={11} className="text-[10px]">
-                            <Typography className="text-[10px] font-bold">
-                                GOLS
-                            </Typography>
+                        <th colSpan={11} className="">
+                            <p className="text-[10px] font-bold">GOLS</p>
                         </th>
                     </tr>
                 </thead>

@@ -16,7 +16,7 @@ export default function SumulaFutsal({ dados }: any) {
     const ref = useRef(null);
     const router = useRouter();
 
-    const handleDownload = () => {
+    const handleBack = () => {
         router.push('/');
     };
 
@@ -37,7 +37,7 @@ export default function SumulaFutsal({ dados }: any) {
         import('html2pdf.js').then((html2pdf) => {
             html2pdf.default(element, opt).from(element).set(opt).save();
         });
-        router.back();
+        router.push('/');
     };
 
     // html2pdf.default(element,opt).from(document.getElementById('pdf-content')).outputPdf('datauristring').then((data: string) => {

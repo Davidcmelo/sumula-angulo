@@ -44,11 +44,15 @@ export function TableUm({ dados }: any) {
                             rowSpan={4}
                             className="w-1/6 text-center text-[16px]"
                         >
-                            <div className=" text-center text-[16px]">
-                                {formataData(dados?.sumula?.data_hora)}
+                            <div className=" text-center ">
+                                <p className="text-[12px]">
+                                    {formataData(dados?.sumula?.data_hora)}
+                                </p>
                             </div>
-                            <div className=" text-center text-[12px]">
-                                {formataHora(dados?.sumula?.data_hora)}
+                            <div className=" text-center ">
+                                <p className="text-[10px]">
+                                    {formataHora(dados?.sumula?.data_hora)}
+                                </p>
                             </div>
 
                             <div className="text-[10px]">

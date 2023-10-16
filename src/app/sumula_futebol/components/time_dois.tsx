@@ -239,10 +239,10 @@ export function TimeDois({ dados }: any) {
     };
     return (
         <main>
-            <div className="m-[1px] flex justify-center  border-b-0">
+            <div className="mt-[1px] flex justify-center  border-b-0">
                 <table className=" sumula-futsal w-1/2 text-[10px]">
                     <thead>
-                        <tr>
+                        <tr className="">
                             <td className="font-bold uppercase ">
                                 TIME: {dados?.sumula?.timeVisitante?.nome}
                             </td>
